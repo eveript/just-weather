@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "aiotion-native",
-    "slug": "aiotion-native",
+    "name": "just-weather",
+    "slug": "just-weather",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,6 +29,6 @@
       "favicon": "./assets/favicon.png"
     },
     "userInterfaceStyle": "automatic",
-    "scheme": "aiotionnative"
+    "scheme": "justweather"
   }
 }
