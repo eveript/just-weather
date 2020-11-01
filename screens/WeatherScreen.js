@@ -16,7 +16,6 @@ const WeatherScreen = ({ navigation, route }) => {
                 lat: latitude,
             })
 
-            console.log(res.data)
             const { name, weather, main } = res.data
 
             setWeather({
@@ -31,7 +30,6 @@ const WeatherScreen = ({ navigation, route }) => {
             console.error(e)
         }
     }
-    console.log(weather)
 
     useEffect(() => {
         if (location) {

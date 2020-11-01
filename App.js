@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance'
 import {StatusBar} from 'expo-status-bar'
@@ -13,6 +13,7 @@ const App = () => {
     const isLoadingComplete = useCachedResources();
 
     const colorScheme = useColorScheme()
+
     return isLoadingComplete ? (
         <SafeAreaProvider>
             <AppearanceProvider>
