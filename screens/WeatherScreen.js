@@ -4,6 +4,7 @@ import {Layout, Text} from '@ui-kitten/components'
 
 import * as openWeatherMapAPI from '../apis/openWeatherMapAPI'
 import {useGeoLocation} from '../hooks/useGeoLocation'
+import WeatherSummary from "../components/WeatherSummary";
 
 const WeatherScreen = ({ navigation, route }) => {
     const location = useGeoLocation()
@@ -39,7 +40,12 @@ const WeatherScreen = ({ navigation, route }) => {
     }, [location])
     return (
         <Layout style={styles.container}>
-            <Text style={styles.title}>{weather.temp ? `${weather.temp}°` : ''}</Text>
+            <WeatherSummary {...weather}/>
+            <Layout><Text>{`#해시태그`}</Text></Layout>
+            <Layout style={styles.predictWeatherContainer}>
+                <Layout><Text>시간별 예보 horizontal scrollview</Text></Layout>
+                <Layout><Text>일별 예보 테이블</Text></Layout>
+            </Layout>
         </Layout>
     )
 }
@@ -53,11 +59,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: '80%',
-    },
+    predictWeatherContainer: {
+        flex: 1
+    }
 })
 
 export default WeatherScreen
