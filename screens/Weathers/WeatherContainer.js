@@ -1,32 +1,52 @@
 import React, {useEffect, useState} from 'react'
 
-import * as openWeatherMapAPI from '../../apis/openWeatherMapAPI'
+import {weatherAPI} from '../../apis/openWeatherMapAPI'
 import {useGeoLocation} from '../../hooks/useGeoLocation'
 import WeatherPresenter from "./WeatherPresenter";
 
 const WeatherContainer = ({ navigation, route }) => {
     const location = useGeoLocation()
-    const [weather, setWeather] = useState({})
+    const [weathers, setWeathers] = useState({
+        loading: true,
+        weatherData: null,
+        weatherError: null,
+    })
 
     const getData = async ({ latitude, longitude }) => {
-        try {
-            const res = await openWeatherMapAPI.getWeather({
-                lon: longitude,
-                lat: latitude,
+        if (!weathers.loading) {
+            setWeathers({
+                ...weathers,
+                loading: true,
             })
+        }
 
-            const { name, weather, main } = res.data
+        const [data, error] = await weatherAPI.currentWeather({
+            lon: longitude,
+            lat: latitude,
+        })
 
-            setWeather({
+        if (data) {
+            const { name, weather, main } = data
+
+            const weatherData = {
                 ...weather[0],
                 ...main,
+            }
+            setWeathers({
+                weatherData,
+                error,
+                loading: false,
             })
             //"{"temp":285.62,"feels_like":283.53,"temp_min":284.15,"temp_max":288.15,"pressure":1022,"humidity":71}"
             navigation.setOptions({
                 title: `${name}/${weather[0].main}`,
             })
-        } catch (e) {
-            console.error(e)
+        } else if (error) {
+            setWeathers({
+                weatherData: data,
+                error,
+                loading: false,
+            })
         }
     }
 
@@ -37,7 +57,7 @@ const WeatherContainer = ({ navigation, route }) => {
         }
     }, [location])
     return (
-        <WeatherPresenter {...weather} />
+        <WeatherPresenter {...weathers} />
     )
 }
 
