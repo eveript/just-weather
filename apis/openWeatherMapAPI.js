@@ -1,18 +1,18 @@
 import axios from 'axios'
-import {API_KEY, WEATHER_URL} from "../constants/Weathers";
+import { API_KEY, WEATHER_URL } from '../constants/Weathers'
 
 const makeRequest = (path, params) => {
     return axios.get(path, {
         params: {
             ...params,
-            appid: API_KEY
-        }
+            appid: API_KEY,
+        },
     })
 }
 
 const getAnything = async (path, params = {}) => {
     try {
-        const {data} = await makeRequest(path, params)
+        const { data } = await makeRequest(path, params)
         return [data, null]
     } catch (e) {
         console.error(e)
@@ -21,5 +21,8 @@ const getAnything = async (path, params = {}) => {
 }
 
 export const weatherAPI = {
-    currentWeather: ({ lon, lat }) => getAnything(`${WEATHER_URL}/weather`, {lon, lat, units: 'metric'})
+    currentWeather: ({ lon, lat }) =>
+        getAnything(`${WEATHER_URL}/weather`, { lon, lat, units: 'metric' }),
+    oneCall: ({ lon, lat }) =>
+        getAnything(`${WEATHER_URL}/onecall`, { lon, lat, units: 'metric', exclude: 'minutely' }),
 }
