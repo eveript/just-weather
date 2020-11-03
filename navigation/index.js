@@ -13,7 +13,7 @@ const Navigation = ({ colorScheme }) => {
     return (
         <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             {/* react에서 Switch 및 Route에 해당 */}
-            <Stack.Navigator screenOptions={{}}>
+            <Stack.Navigator>
                 <Stack.Screen
                     name="Root"
                     component={WeatherContainer}
