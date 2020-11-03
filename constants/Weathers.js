@@ -1,3 +1,10 @@
+export const API_BASE_URL = 'http://api.openweathermap.org'
+export const API_IMAGE_URL = 'http://openweathermap.org'
+export const API_VERSION = 2.5
+export const API_KEY = '8beebccf2cdfcb055098ca91c3c05742'
+export const WEATHER_URL = `${API_BASE_URL}/data/${API_VERSION}`
+export const WEATHER_IMAGE_URL = `${API_IMAGE_URL}/img/wn`
+
 const ICONS_PREFIX = 'weather'
 
 /*

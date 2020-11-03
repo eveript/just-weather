@@ -1,9 +1,11 @@
-import React, {useEffect, useRef} from 'react'
-import { isNumber } from 'lodash'
+import React, {useRef} from 'react'
 
-import {Button, Icon, Layout, Text, useTheme} from '@ui-kitten/components'
+import {isNumber} from 'lodash'
+
+import {Avatar, Layout, Text} from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import {useColorScheme} from "react-native-appearance";
+import {WEATHER_IMAGE_URL} from "../../constants/Weathers";
 
 const SummaryBox = styled(Layout)`
     flex: 1;
@@ -15,12 +17,13 @@ const TempText = styled(Text)`
     font-weight: bold;
 `
 
-const WeatherIcon = styled(Icon)`
-width: 72px;
-height: 72px;
-color: ${props => props.scheme === 'dark' ? '#fff' : '#000'}
+// const WeatherIcon = styled(Icon)`
+const WeatherIcon = styled(Avatar)`
+width: 128px;
+height: 128px;
+/* color: ${props => props.scheme === 'dark' ? '#fff' : '#000'} */
 `
-const WeatherSummary = ({ temp }) => {
+const WeatherSummary = ({ temp, icon }) => {
     const tempIconRef = useRef()
     const colorScheme = useColorScheme()
 
@@ -34,21 +37,22 @@ const WeatherSummary = ({ temp }) => {
     //     />
     // )
 
-    useEffect(() => {
-        tempIconRef.current.startAnimation()
-    }, [])
+    // useEffect(() => {
+    //     tempIconRef.current.startAnimation()
+    // }, [])
 
     return (
         <SummaryBox>
             <Layout>
                 {/*<Button appearance="ghost" accessoryLeft={TempIcon} size="giant" />*/}
-                <WeatherIcon
-                    ref={tempIconRef}
-                    animationConfig={{ cycles: Infinity }}
-                    animation="pulse"
-                    name="weather-windy"
-                    scheme={colorScheme}
-                />
+                {/*<WeatherIcon*/}
+                {/*    ref={tempIconRef}*/}
+                {/*    animationConfig={{ cycles: Infinity }}*/}
+                {/*    animation="pulse"*/}
+                {/*    name="weather-windy"*/}
+                {/*    scheme={colorScheme}*/}
+                {/*/>*/}
+                <WeatherIcon source={{uri: `${WEATHER_IMAGE_URL}/${icon}@2x.png`}}/>
             </Layout>
             <Layout>
                 <TempText>{isNumber(temp) ? `${parseInt(temp, 10)}°` : ''}</TempText>

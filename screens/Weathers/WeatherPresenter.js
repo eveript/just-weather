@@ -19,7 +19,7 @@ export default ({ weatherData, loading }) => (
             <Spinner/>
         ) : (
             <>
-                <WeatherSummary temp={weatherData.temp} />
+                <WeatherSummary {...weatherData} />
                 <Layout>
                     <Text>{`#해시태그`}</Text>
                 </Layout>
