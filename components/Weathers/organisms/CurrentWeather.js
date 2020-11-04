@@ -38,16 +38,15 @@ const CurrentWeather = ({
                     {isNumber(temp) ? `${parseInt(temp, 10)}°` : ''}
                 </TempText>
                 <Layout>
-                    <Text category="c2">{`최고:${temp_max}°`}</Text>
-                    <Text category="c2">{`최저:${temp_min}°`}</Text>
+                    <Text category="s2">{`최고:${temp_max}°`}</Text>
+                    <Text category="s2">{`최저:${temp_min}°`}</Text>
                 </Layout>
             </RowLayout>
             <Layout>
-                <Text>어제보다 1도 낮아요</Text>
+                <Text category="h6">어제보다 1도 낮아요</Text>
             </Layout>
             <Layout>
-                <Text>{description}</Text>
-                <Text>{`습도 ${humidity}%`}</Text>
+                <Text category="s2">{description}</Text>
             </Layout>
         </SummaryBox>
     )
