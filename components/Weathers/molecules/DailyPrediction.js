@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 import dayjs from 'dayjs'
 import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherIcon from '../atoms/WeatherIcon'
+import RowLayout from "../../Eva/RowLayout";
 
 const DayList = styled(List)`
     /*max-height: 100px;*/
@@ -17,6 +18,10 @@ const DayItem = styled(ListItem)``
 const WeatherIconWrapper = styled(Layout)`
     flex: 1;
     align-items: center;
+`
+const MinMaxWrapper = styled(RowLayout)`
+  width: 70px;
+  justify-content: space-between;
 `
 const DailyPrediction = ({ daily }) => {
     // dayjs.tz.setDefault(timezone)
@@ -39,8 +44,10 @@ const DailyPrediction = ({ daily }) => {
                         scale={0.5}
                     />
                 </WeatherIconWrapper>
-                <Text>{`${parseInt(item.temp.max, 10)}°`}</Text>
-                <Text>{`${parseInt(item.temp.min, 10)}°`}</Text>
+                <MinMaxWrapper>
+                    <Text>{`${parseInt(item.temp.max, 10)}°`}</Text>
+                    <Text>{`${parseInt(item.temp.min, 10)}°`}</Text>
+                </MinMaxWrapper>
             </DayItem>
         </DayItemWrapper>
     )
