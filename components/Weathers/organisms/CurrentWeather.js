@@ -46,7 +46,7 @@ const CurrentWeather = ({
                 <Text category="h6">어제보다 1도 낮아요</Text>
             </Layout>
             <Layout>
-                <Text category="s2">{description}</Text>
+                <Text category="p1">{description}</Text>
             </Layout>
         </SummaryBox>
     )
