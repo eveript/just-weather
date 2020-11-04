@@ -3,29 +3,21 @@ import { isNumber } from 'lodash'
 import { Avatar, Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 
-import { WEATHER_IMAGE_URL } from '../../constants/Weathers'
+import { WEATHER_IMAGE_URL } from '../../../constants/Weathers'
+import RowLayout from "../../Eva/RowLayout";
+import {getWeatherIcon} from "../../../apis/openWeatherMapAPI";
+import WeatherIcon from "../atoms/WeatherIcon";
 
 const SummaryBox = styled(Layout)`
     flex: 1;
     justify-content: center;
     align-items: center;
 `
-const RowBox = styled(Layout)`
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
-
-const TempBox = styled(RowBox)``
 const TempText = styled(Text)`
     margin-right: 10px;
 `
 
-const WeatherIcon = styled(Avatar)`
-    width: 200px;
-    height: 200px;
-`
-const WeatherSummary = ({
+const CurrentWeather = ({
     description,
     temp,
     temp_min,
@@ -37,10 +29,11 @@ const WeatherSummary = ({
         <SummaryBox>
             <Layout>
                 <WeatherIcon
-                    source={{ uri: `${WEATHER_IMAGE_URL}/${icon}@4x.png` }}
+                    source={{ uri: getWeatherIcon(icon) }}
+                    scale={2}
                 />
             </Layout>
-            <TempBox>
+            <RowLayout>
                 <TempText category="h1">
                     {isNumber(temp) ? `${parseInt(temp, 10)}°` : ''}
                 </TempText>
@@ -48,7 +41,7 @@ const WeatherSummary = ({
                     <Text category="c2">{`최고:${temp_max}°`}</Text>
                     <Text category="c2">{`최저:${temp_min}°`}</Text>
                 </Layout>
-            </TempBox>
+            </RowLayout>
             <Layout>
                 <Text>어제보다 1도 낮아요</Text>
             </Layout>
@@ -60,4 +53,4 @@ const WeatherSummary = ({
     )
 }
 
-export default WeatherSummary
+export default CurrentWeather

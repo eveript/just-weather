@@ -1,29 +1,37 @@
 import React from 'react'
-import WeatherSummary from '../../components/Weathers/WeatherSummary'
-import {Layout, Spinner, Text} from '@ui-kitten/components'
+import CurrentWeather from '../../components/Weathers/organisms/CurrentWeather'
+import { Layout, Spinner } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import HourlyPrediction from "../../components/Weathers/HourlyPrediction";
+import PredictWeather from '../../components/Weathers/organisms/PredictWeather'
 
 const WeatherBox = styled(Layout)`
     flex: 1;
     align-items: center;
     justify-content: center;
 `
+const CurrentWeatherBox = styled(Layout)`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
+const PredictWeatherBox = styled(Layout)`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
 
 export default ({ currentWeather, oneCall, loading }) => (
     <WeatherBox>
         {loading ? (
-            <Spinner/>
+            <Spinner />
         ) : (
             <>
-                <WeatherSummary {...currentWeather} />
-                <Layout>
-                    <Text>{`#해시태그`}</Text>
-                </Layout>
-                <HourlyPrediction {...oneCall} />
-                <Layout>
-                    <Text>일별 예보 테이블</Text>
-                </Layout>
+                <CurrentWeatherBox>
+                    <CurrentWeather {...currentWeather} />
+                </CurrentWeatherBox>
+                <PredictWeatherBox>
+                    <PredictWeather {...oneCall} />
+                </PredictWeatherBox>
             </>
         )}
     </WeatherBox>
