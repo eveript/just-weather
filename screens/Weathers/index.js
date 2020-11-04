@@ -1,3 +1,3 @@
-import WeatherContainer from "./WeatherContainer";
+import WeatherContainer from './WeatherContainer'
 
 export default WeatherContainer

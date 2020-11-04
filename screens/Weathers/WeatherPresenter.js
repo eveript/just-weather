@@ -1,9 +1,11 @@
 import React from 'react'
 import CurrentWeather from '../../components/Weathers/organisms/CurrentWeather'
-import { Layout, Spinner } from '@ui-kitten/components'
+import { Layout, Spinner, useTheme } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import PredictWeather from '../../components/Weathers/organisms/PredictWeather'
-import HashTags from "../../components/Weathers/organisms/HashTags";
+import HashTags from '../../components/Weathers/organisms/HashTags'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { Platform, ScrollView } from 'react-native'
 
 const WeatherBox = styled(Layout)`
     flex: 1;
@@ -15,31 +17,66 @@ const CurrentWeatherBox = styled(Layout)`
     justify-content: center;
     align-items: center;
 `
-const TagBox = styled(Layout)`
-
-`
+const TagBox = styled(Layout)``
 const PredictWeatherBox = styled(Layout)`
     flex: 1;
     justify-content: flex-start;
     align-items: center;
 `
 
-export default ({ currentWeather, oneCall, loading }) => (
+const MobileView = ({ currentWeather, oneCall }) => (
+    <ScrollView
+        contentContainerStyle={{
+            alignItems: 'center',
+        }}
+        horizontal={false}
+    >
+        <CurrentWeatherBox>
+            <CurrentWeather {...currentWeather} />
+        </CurrentWeatherBox>
+        <TagBox>
+            <HashTags {...oneCall} />
+        </TagBox>
+        <PredictWeatherBox>
+            <PredictWeather {...oneCall} />
+        </PredictWeatherBox>
+    </ScrollView>
+)
+
+const WebView = ({ currentWeather, oneCall }) => (
     <WeatherBox>
-        {loading ? (
-            <Spinner />
-        ) : (
-            <>
-                <CurrentWeatherBox>
-                    <CurrentWeather {...currentWeather} />
-                </CurrentWeatherBox>
-                <TagBox>
-                    <HashTags {...oneCall} />
-                </TagBox>
-                <PredictWeatherBox>
-                    <PredictWeather {...oneCall} />
-                </PredictWeatherBox>
-            </>
-        )}
+        <CurrentWeatherBox>
+            <CurrentWeather {...currentWeather} />
+        </CurrentWeatherBox>
+        <TagBox>
+            <HashTags {...oneCall} />
+        </TagBox>
+        <PredictWeatherBox>
+            <PredictWeather {...oneCall} />
+        </PredictWeatherBox>
     </WeatherBox>
 )
+
+export default (props) => {
+    const theme = useTheme()
+    return (
+        <SafeAreaView
+            style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: theme['background-basic-color-1'],
+            }}
+        >
+            {props.loading ? (
+                <Spinner />
+            ) : (
+                Platform.select({
+                    ios: <MobileView {...props} />,
+                    android: <MobileView {...props} />,
+                    default: <WebView {...props} />,
+                })
+            )}
+        </SafeAreaView>
+    )
+}

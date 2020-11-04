@@ -7,7 +7,7 @@ import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherIcon from '../atoms/WeatherIcon'
 
 const UnGrowScrollView = styled(ScrollView)`
-    flex-grow: 0;
+    flex-grow: 1;
     width: ${Dimensions.get('window').width}px;
 `
 const HourCard = styled(Layout)``

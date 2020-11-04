@@ -1,12 +1,10 @@
 import React from 'react'
 import { isNumber } from 'lodash'
-import { Avatar, Layout, Text } from '@ui-kitten/components'
+import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-
-import { WEATHER_IMAGE_URL } from '../../../constants/Weathers'
-import RowLayout from "../../Eva/RowLayout";
-import {getWeatherIcon} from "../../../apis/openWeatherMapAPI";
-import WeatherIcon from "../atoms/WeatherIcon";
+import RowLayout from '../../Eva/RowLayout'
+import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
+import WeatherIcon from '../atoms/WeatherIcon'
 
 const SummaryBox = styled(Layout)`
     flex: 1;
@@ -17,21 +15,11 @@ const TempText = styled(Text)`
     margin-right: 10px;
 `
 
-const CurrentWeather = ({
-    description,
-    temp,
-    temp_min,
-    temp_max,
-    humidity,
-    icon,
-}) => {
+const CurrentWeather = ({ description, temp, temp_min, temp_max, icon }) => {
     return (
         <SummaryBox>
             <Layout>
-                <WeatherIcon
-                    source={{ uri: getWeatherIcon(icon) }}
-                    scale={2}
-                />
+                <WeatherIcon source={{ uri: getWeatherIcon(icon) }} scale={2} />
             </Layout>
             <RowLayout>
                 <TempText category="h1">

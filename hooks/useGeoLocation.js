@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import * as Location from "expo-location";
+import React, { useEffect, useState } from 'react'
+import * as Location from 'expo-location'
 
 export const useGeoLocation = () => {
     const [location, setLocation] = useState(null)
@@ -11,7 +11,9 @@ export const useGeoLocation = () => {
             setErrorMsg('Permission to access location was denied')
         }
 
-        let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High})
+        let location = await Location.getCurrentPositionAsync({
+            accuracy: Location.Accuracy.High,
+        })
         setLocation(location)
     }
 

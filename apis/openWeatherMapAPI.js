@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {API_KEY, WEATHER_IMAGE_URL, WEATHER_URL} from '../constants/Weathers'
+import { API_KEY, WEATHER_IMAGE_URL, WEATHER_URL } from '../constants/Weathers'
 
 const makeRequest = (path, params) => {
     return axios.get(path, {
@@ -24,7 +24,12 @@ export const weatherAPI = {
     currentWeather: ({ lon, lat }) =>
         getAnything(`${WEATHER_URL}/weather`, { lon, lat, units: 'metric' }),
     oneCall: ({ lon, lat }) =>
-        getAnything(`${WEATHER_URL}/onecall`, { lon, lat, units: 'metric', exclude: 'minutely' }),
+        getAnything(`${WEATHER_URL}/onecall`, {
+            lon,
+            lat,
+            units: 'metric',
+            exclude: 'minutely',
+        }),
 }
 
-export const getWeatherIcon = icon => `${WEATHER_IMAGE_URL}/${icon}@4x.png`
+export const getWeatherIcon = (icon) => `${WEATHER_IMAGE_URL}/${icon}@4x.png`

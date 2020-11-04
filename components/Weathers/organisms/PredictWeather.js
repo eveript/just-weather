@@ -2,8 +2,8 @@ import React from 'react'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import HourlyPrediction from '../molecules/HourlyPrediction'
-import DailyPrediction from "../molecules/DailyPrediction";
-import RowLayout from "../../Eva/RowLayout";
+import DailyPrediction from '../molecules/DailyPrediction'
+import RowLayout from '../../Eva/RowLayout'
 
 const HourlyLabel = styled(Layout)`
     margin-top: 10px;
@@ -11,6 +11,10 @@ const HourlyLabel = styled(Layout)`
     padding-left: 10px;
     padding-right: 10px;
     flex-direction: row;
+`
+const HourlyScrollView = styled(Layout)`
+    height: 150px;
+    align-items: stretch;
 `
 const DailyLabel = styled(Layout)`
     margin-top: 10px;
@@ -21,8 +25,8 @@ const DailyLabel = styled(Layout)`
     justify-content: space-between;
 `
 const MinMaxWrapper = styled(RowLayout)`
-  width: 70px;
-  justify-content: space-between;
+    width: 70px;
+    justify-content: space-between;
 `
 
 export default ({ current, hourly, daily, ...rest }) => (
@@ -30,7 +34,9 @@ export default ({ current, hourly, daily, ...rest }) => (
         <HourlyLabel level="2">
             <Text category="s2">시간별 예보</Text>
         </HourlyLabel>
-        <HourlyPrediction hourly={hourly} />
+        <HourlyScrollView>
+            <HourlyPrediction hourly={hourly} />
+        </HourlyScrollView>
         <DailyLabel level="2">
             <Text category="s2">요일별 예보</Text>
             <MinMaxWrapper level="2">

@@ -1,15 +1,11 @@
 import React from 'react'
-import { Dimensions, ScrollView } from 'react-native'
-import { Layout, Text, List, ListItem } from '@ui-kitten/components'
+import { Layout, List, ListItem, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import dayjs from 'dayjs'
 import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherIcon from '../atoms/WeatherIcon'
-import RowLayout from "../../Eva/RowLayout";
+import RowLayout from '../../Eva/RowLayout'
 
-const DayList = styled(List)`
-    /*max-height: 100px;*/
-`
 const DayItemWrapper = styled(Layout)`
     padding-left: 10px;
     padding-right: 10px;
@@ -20,8 +16,8 @@ const WeatherIconWrapper = styled(Layout)`
     align-items: center;
 `
 const MinMaxWrapper = styled(RowLayout)`
-  width: 70px;
-  justify-content: space-between;
+    width: 70px;
+    justify-content: space-between;
 `
 const DailyPrediction = ({ daily }) => {
     // dayjs.tz.setDefault(timezone)
@@ -51,7 +47,16 @@ const DailyPrediction = ({ daily }) => {
             </DayItem>
         </DayItemWrapper>
     )
-    return <DayList data={daily} renderItem={renderItem} />
+    return (
+        <List
+            data={daily}
+            renderItem={renderItem}
+            // style={{
+            //     borderColor: 'blue',
+            //     borderWidth: 3,
+            // }}
+        />
+    )
 }
 
 export default DailyPrediction
