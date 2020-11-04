@@ -29,6 +29,8 @@
       "favicon": "./assets/favicon.png"
     },
     "userInterfaceStyle": "automatic",
-    "scheme": "justweather"
+    "scheme": "justweather",
+    "description": "",
+    "githubUrl": "https://github.com/eveript/just-weather.git"
   }
 }
