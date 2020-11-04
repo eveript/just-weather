@@ -1,44 +1,50 @@
 import React from 'react'
 import { Dimensions, ScrollView } from 'react-native'
-import {Layout, Text, List, ListItem} from '@ui-kitten/components'
+import { Layout, Text, List, ListItem } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import dayjs from 'dayjs'
 import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherIcon from '../atoms/WeatherIcon'
 
-const UnGrowScrollView = styled(ScrollView)`
-    flex-grow: 0;
-    width: ${Dimensions.get('window').width}px;
+const DayList = styled(List)`
+    /*max-height: 100px;*/
 `
-const DayList = styled(Layout)`
-  max-height: 100px;
+const DayItemWrapper = styled(Layout)`
+    padding-left: 10px;
+    padding-right: 10px;
 `
-const HourWeatherHeader = styled(Layout)`
-    align-items: center;
-`
-const HourWeatherFooter = styled(Layout)`
+const DayItem = styled(ListItem)``
+const WeatherIconWrapper = styled(Layout)`
+    flex: 1;
     align-items: center;
 `
 const DailyPrediction = ({ daily }) => {
     // dayjs.tz.setDefault(timezone)
 
-    console.log(daily)
     const dateFormat = (date) => {
-        const [a, time] = dayjs(date).format('A h').split(' ')
-        const prefix = a === 'AM' ? '오전' : '오후'
-        return `${prefix} ${time}시`
+        return dayjs(date).format('dddd')
     }
-    const renderItem = ({ item, index }) => (
-        <ListItem
-            title={index.toString()}
-        />
+    const renderItem = ({
+        item,
+        item: {
+            weather: [weather],
+        },
+    }) => (
+        <DayItemWrapper>
+            <DayItem>
+                <Text>{dateFormat(item.dt * 1000)}</Text>
+                <WeatherIconWrapper>
+                    <WeatherIcon
+                        source={{ uri: getWeatherIcon(weather.icon) }}
+                        scale={0.5}
+                    />
+                </WeatherIconWrapper>
+                <Text>{`${parseInt(item.temp.max, 10)}°`}</Text>
+                <Text>{`${parseInt(item.temp.min, 10)}°`}</Text>
+            </DayItem>
+        </DayItemWrapper>
     )
-    return (
-        <DayList
-            data={daily}
-            renderItem={renderItem}
-        />
-    )
+    return <DayList data={daily} renderItem={renderItem} />
 }
 
 export default DailyPrediction

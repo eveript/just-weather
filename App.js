@@ -8,6 +8,10 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons'
 import Navigation from './navigation'
 import useCachedResources from './hooks/useCachedResources'
 import {MaterialCommunityIconsPack} from "./eva/material-community-icons";
+import dayjs from "dayjs";
+import 'dayjs/locale/ko'
+
+dayjs.locale('ko')
 
 const App = () => {
     const isLoadingComplete = useCachedResources()
