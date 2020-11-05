@@ -10,7 +10,9 @@ const UnGrowScrollView = styled(ScrollView)`
     flex-grow: 1;
     width: ${Dimensions.get('window').width}px;
 `
-const HourCard = styled(Layout)``
+const HourCard = styled(Layout)`
+opacity: ${props => props.index === 0 ? 1 : 0.5};
+`
 const HourWeatherHeader = styled(Layout)`
     align-items: center;
 `
@@ -31,7 +33,7 @@ const HourlyPrediction = ({ hourly }) => {
                 .filter((h, i) => i < 24)
                 .map(({ dt, temp, weather: [weather] }, index) => {
                     return (
-                        <HourCard key={dt}>
+                        <HourCard key={dt} index={index}>
                             <HourWeatherHeader>
                                 <Text category="s1">
                                     {index !== 0
