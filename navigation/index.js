@@ -12,10 +12,11 @@ import WeatherContainer from '../screens/Weathers'
 
 const Stack = createStackNavigator()
 
-const Navigation = ({ colorScheme }) => {
+const Navigation = React.forwardRef(({ colorScheme }, ref) => {
     const theme = useTheme()
     return (
         <NavigationContainer
+            ref={ref}
             linking={LinkingConfiguration}
             theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
         >
@@ -53,5 +54,5 @@ const Navigation = ({ colorScheme }) => {
             </Stack.Navigator>
         </NavigationContainer>
     )
-}
+})
 export default Navigation

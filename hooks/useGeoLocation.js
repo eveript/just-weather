@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import * as Location from 'expo-location'
+import {expoAPI} from "../apis/expoAPI";
 
 export const useGeoLocation = () => {
     const [location, setLocation] = useState(null)
     const [errorMsg, setErrorMsg] = useState(null)
 
     const getLocation = async () => {
-        let { status } = await Location.requestPermissionsAsync()
-        if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied')
-        }
-
-        let location = await Location.getCurrentPositionAsync({
-            accuracy: Location.Accuracy.High,
-        })
+        const { location, status, error } = await expoAPI.getLocation()
         setLocation(location)
     }
 
