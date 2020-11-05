@@ -24,7 +24,7 @@ const PredictWeatherBox = styled(Layout)`
     align-items: center;
 `
 
-const MobileView = ({ oneCall }) => (
+const MobileView = (props) => (
     <ScrollView
         contentContainerStyle={{
             alignItems: 'center',
@@ -32,27 +32,27 @@ const MobileView = ({ oneCall }) => (
         horizontal={false}
     >
         <CurrentWeatherBox>
-            <CurrentWeather {...oneCall} />
+            <CurrentWeather {...props} />
         </CurrentWeatherBox>
         <TagBox>
-            <HashTags {...oneCall} />
+            <HashTags {...props} />
         </TagBox>
         <PredictWeatherBox>
-            <PredictWeather {...oneCall} />
+            <PredictWeather {...props} />
         </PredictWeatherBox>
     </ScrollView>
 )
 
-const WebView = ({ oneCall }) => (
+const WebView = (props) => (
     <WeatherBox>
         <CurrentWeatherBox>
-            <CurrentWeather {...oneCall} />
+            <CurrentWeather {...props} />
         </CurrentWeatherBox>
         <TagBox>
-            <HashTags {...oneCall} />
+            <HashTags {...props} />
         </TagBox>
         <PredictWeatherBox>
-            <PredictWeather {...oneCall} />
+            <PredictWeather {...props} />
         </PredictWeatherBox>
     </WeatherBox>
 )
@@ -68,7 +68,7 @@ export default (props) => {
                 backgroundColor: theme['background-basic-color-1'],
             }}
         >
-            {props.loading ? (
+            {!props.isLoadingComplete ? (
                 <Spinner />
             ) : (
                 Platform.select({
