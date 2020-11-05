@@ -66,7 +66,7 @@ export default (props) => {
                 backgroundColor: theme['background-basic-color-1'],
             }}
         >
-            {!props.isLoadingComplete ? (
+            {props.loading ? (
                 <Spinner />
             ) : (
                 Platform.select({

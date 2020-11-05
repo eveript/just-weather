@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import locationReducer from './slicers/locationSlicer'
-import weatherReducer from './slicers/weatherSlicer'
-import errorReducer from './slicers/errorSlicer'
+import locationReducer from './slicers/locationSlice'
+import weatherReducer from './slicers/weatherSlice'
+import errorReducer from './slicers/errorSlice'
 
 const reducers = combineReducers({
     location: locationReducer,

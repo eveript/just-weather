@@ -23,14 +23,14 @@ dayjs.locale('ko')
 
 const App = () => {
     // 마운트시 불러올 리소스나 데이터는 여기에서
-    const { locationData, weatherData, error } = useCachedResources()
+    const { locationData, weatherData, error, isLoadingComplete } = useCachedResources()
 
     const colorScheme = useColorScheme()
 
     const navigationRef = useRef()
     useReduxDevToolsExtension(navigationRef)
 
-    return weatherData?.isLoadingComplete ? (
+    return isLoadingComplete ? (
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <AppearanceProvider>
                 <IconRegistry

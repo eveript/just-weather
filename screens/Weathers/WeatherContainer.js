@@ -3,9 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { weatherAPI } from '../../apis/openWeatherMapAPI'
 import { useGeoLocation } from '../../hooks/useGeoLocation'
 import WeatherPresenter from './WeatherPresenter'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useAppState} from "../../hooks/useAppState";
+import {refetchOneCall} from "../../slicers/weatherSlice";
 
 const WeatherContainer = ({ navigation, route }) => {
+    const appState = useAppState()
+    const dispatch = useDispatch()
 
     const { location, weather } = useSelector(state => ({
         location : state.location,
@@ -19,6 +23,13 @@ const WeatherContainer = ({ navigation, route }) => {
             })
         }
     }, [location])
+
+    useEffect(() => {
+        if (appState === 'active') {
+            console.log('appState', appState)
+            dispatch(refetchOneCall())
+        }
+    }, [appState])
     return <WeatherPresenter {...weather} />
 }
 

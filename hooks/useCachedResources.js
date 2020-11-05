@@ -11,51 +11,15 @@ const useCachedResources = () => {
         locationData: null,
         weatherData: null,
         error: null,
+        isLoadingComplete: false,
     })
 
     const appState = useAppState()
 
-    const performAPICalls = async () => {
-        try {
-            setStatus({
-                ...status,
-                weatherData: {
-                    ...status.weatherData,
-                    isLoadingComplete: false,
-                },
-            })
-
-            const locationData = await expoAPI.getLocation()
-
-            const [weatherData, weatherDataError] = await weatherAPI.oneCall({
-                lon: locationData?.location?.coords?.longitude,
-                lat: locationData?.location?.coords?.latitude,
-            })
-            setStatus({
-                ...status,
-                locationData,
-                weatherData: {
-                    ...weatherData,
-                    isLoadingComplete: true,
-                },
-                error: null,
-            })
-        } catch (e) {
-            console.error(e)
-            setStatus({
-                ...status,
-                locationData: null,
-                weatherData: {
-                    ...weatherData,
-                    isLoadingComplete: true,
-                },
-                error: e,
-            })
-        }
-    }
     // Load any resources or data that we need prior to rendering the app
     useEffect(() => {
         const loadResourcesAndDataAsync = async () => {
+            let responses
             try {
                 SplashScreen.preventAutoHideAsync()
 
@@ -64,31 +28,24 @@ const useCachedResources = () => {
                     ...Ionicons.font,
                     'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
                 })
-                performAPICalls()
+                responses = await weatherAPI.refetchOneCall()
             } catch (e) {
                 // We might want to provide this error information to an error reporting service
                 console.error(e)
             } finally {
                 SplashScreen.hideAsync()
+                const [data, error] = responses
+                setStatus({
+                    locationData: data?.locationData,
+                    weatherData: data?.weatherData,
+                    error,
+                    isLoadingComplete: true,
+                })
             }
         }
 
         loadResourcesAndDataAsync()
     }, [])
-
-    useEffect(() => {
-        if (appState === 'active') {
-            const loadDataAsync = async () => {
-                try {
-                    performAPICalls()
-                } catch (e) {
-                    console.error(e)
-                }
-            }
-
-            loadDataAsync()
-        }
-    }, [appState])
 
     return status
 }
