@@ -24,7 +24,7 @@ const PredictWeatherBox = styled(Layout)`
     align-items: center;
 `
 
-const MobileView = ({ currentWeather, oneCall }) => (
+const MobileView = ({ oneCall }) => (
     <ScrollView
         contentContainerStyle={{
             alignItems: 'center',
@@ -32,7 +32,7 @@ const MobileView = ({ currentWeather, oneCall }) => (
         horizontal={false}
     >
         <CurrentWeatherBox>
-            <CurrentWeather {...currentWeather} />
+            <CurrentWeather {...oneCall} />
         </CurrentWeatherBox>
         <TagBox>
             <HashTags {...oneCall} />
@@ -43,10 +43,10 @@ const MobileView = ({ currentWeather, oneCall }) => (
     </ScrollView>
 )
 
-const WebView = ({ currentWeather, oneCall }) => (
+const WebView = ({ oneCall }) => (
     <WeatherBox>
         <CurrentWeatherBox>
-            <CurrentWeather {...currentWeather} />
+            <CurrentWeather {...oneCall} />
         </CurrentWeatherBox>
         <TagBox>
             <HashTags {...oneCall} />

@@ -31,9 +31,8 @@ const Navigation = ({ colorScheme }) => {
                                 title={
                                     props?.children === 'Root'
                                         ? ''
-                                        : props?.children.split('/')[0]
+                                        : props?.children
                                 }
-                                subtitle={props?.children.split('/')[1]}
                                 style={{
                                     width: '100%',
                                 }}

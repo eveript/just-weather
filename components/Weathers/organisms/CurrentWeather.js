@@ -15,26 +15,26 @@ const TempText = styled(Text)`
     margin-right: 10px;
 `
 
-const CurrentWeather = ({ description, temp, temp_min, temp_max, icon }) => {
+const CurrentWeather = ({ current, daily }) => {
     return (
         <SummaryBox>
             <Layout>
-                <WeatherIcon source={{ uri: getWeatherIcon(icon) }} scale={2} />
+                <WeatherIcon source={{ uri: getWeatherIcon(current.weather[0].icon) }} scale={2} />
             </Layout>
             <RowLayout>
                 <TempText category="h1">
-                    {isNumber(temp) ? `${parseInt(temp, 10)}°` : ''}
+                    {isNumber(current.temp) ? `${parseInt(current.temp, 10)}°` : ''}
                 </TempText>
                 <Layout>
-                    <Text category="s2">{`최고:${temp_max}°`}</Text>
-                    <Text category="s2">{`최저:${temp_min}°`}</Text>
+                    <Text category="s2">{`최고:${parseInt(daily[0].temp.max, 10)}°`}</Text>
+                    <Text category="s2">{`최저:${parseInt(daily[0].temp.min, 10)}°`}</Text>
                 </Layout>
             </RowLayout>
             <Layout>
-                <Text category="h6">어제보다 1도 낮아요</Text>
+                <Text category="h6">어제보다 1도 낮아요[아직 미구현]</Text>
             </Layout>
             <Layout>
-                <Text category="p1">{description}</Text>
+                <Text category="p1">{current.weather[0].description}</Text>
             </Layout>
         </SummaryBox>
     )
