@@ -29,14 +29,6 @@ const App = () => {
     const navigationRef = useRef()
     useReduxDevToolsExtension(navigationRef)
 
-    useEffect(() => {
-        AppState.addEventListener('change', (appState) => {
-            // inactive background
-            // active
-            console.log('appState', appState)
-        })
-    }, [])
-
     return status?.isLoadingComplete ? (
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <AppearanceProvider>
