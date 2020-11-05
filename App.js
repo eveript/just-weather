@@ -1,4 +1,6 @@
-import React, {useEffect, useCallback, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
+import { AppState } from 'react-native'
+
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import { StatusBar } from 'expo-status-bar'
 import {
@@ -8,7 +10,7 @@ import {
 import * as eva from '@eva-design/eva'
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
-import { useReduxDevToolsExtension } from '@react-navigation/devtools';
+import { useReduxDevToolsExtension } from '@react-navigation/devtools'
 
 import Navigation from './navigation'
 import useCachedResources from './hooks/useCachedResources'
@@ -28,13 +30,13 @@ const App = () => {
     useReduxDevToolsExtension(navigationRef)
 
     useEffect(() => {
-        // 앱 재진입 처리는 어디서 해야할까? 여기서는 안 된다.
+        AppState.addEventListener('change', (appState) => {
+            // inactive background
+            // active
+            console.log('appState', appState)
+        })
+    }, [])
 
-        return () => {
-            // 홈 화면으로 나갈 때 할 일이 있으면 여기서
-            console.log('모든 상태 변하기 전에 타는그')
-        }
-    })
     return status?.isLoadingComplete ? (
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <AppearanceProvider>
