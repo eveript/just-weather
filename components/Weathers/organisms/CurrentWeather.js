@@ -17,28 +17,50 @@ const TempText = styled(Text)`
 
 const CurrentWeather = ({ current, daily }) => {
     return (
-        <SummaryBox>
-            <Layout>
-                <WeatherIcon source={{ uri: getWeatherIcon(current.weather[0].icon) }} scale={2} />
-            </Layout>
-            <RowLayout>
-                <TempText category="h1">
-                    {isNumber(current.temp) ? `${parseInt(current.temp, 10)}°` : ''}
-                </TempText>
+        current &&
+        daily && (
+            <SummaryBox>
                 <Layout>
-                    <Text category="s2">{`최고:${parseInt(daily[0].temp.max, 10)}°`}</Text>
-                    <Text category="s2">{`최저:${parseInt(daily[0].temp.min, 10)}°`}</Text>
-                    <Text category="s2">{`오전:${parseInt(daily[0].temp.morn, 10)}°`}</Text>
-                    <Text category="s2">{`오후:${parseInt(daily[0].temp.eve, 10)}°`}</Text>
+                    <WeatherIcon
+                        source={{
+                            uri: getWeatherIcon(current.weather[0].icon),
+                        }}
+                        scale={2}
+                    />
                 </Layout>
-            </RowLayout>
-            <Layout>
-                <Text category="h6">어제보다 1도 낮아요[아직 미구현]</Text>
-            </Layout>
-            <Layout>
-                <Text category="p1">{current.weather[0].description}</Text>
-            </Layout>
-        </SummaryBox>
+                <RowLayout>
+                    <TempText category="h1">
+                        {isNumber(current.temp)
+                            ? `${parseInt(current.temp, 10)}°`
+                            : ''}
+                    </TempText>
+                    <Layout>
+                        <Text category="s2">{`최고:${parseInt(
+                            daily[0].temp.max,
+                            10,
+                        )}°`}</Text>
+                        <Text category="s2">{`최저:${parseInt(
+                            daily[0].temp.min,
+                            10,
+                        )}°`}</Text>
+                        <Text category="s2">{`오전:${parseInt(
+                            daily[0].temp.morn,
+                            10,
+                        )}°`}</Text>
+                        <Text category="s2">{`오후:${parseInt(
+                            daily[0].temp.eve,
+                            10,
+                        )}°`}</Text>
+                    </Layout>
+                </RowLayout>
+                <Layout>
+                    <Text category="h6">어제보다 1도 낮아요[아직 미구현]</Text>
+                </Layout>
+                <Layout>
+                    <Text category="p1">{current.weather[0].description}</Text>
+                </Layout>
+            </SummaryBox>
+        )
     )
 }
 

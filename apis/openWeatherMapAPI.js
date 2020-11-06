@@ -14,26 +14,10 @@ const makeRequest = (path, params) => {
 const getAnything = async (path, params = {}) => {
     try {
         const { data } = await makeRequest(path, params)
-        return [data, null]
+        return data
     } catch (e) {
         console.error(e)
-        return [null, e]
-    }
-}
-
-const performAPICalls = async () => {
-    try {
-        const locationData = await expoAPI.getLocation()
-
-        const [weatherData, weatherDataError] = await weatherAPI.oneCall({
-            lon: locationData?.location?.coords?.longitude,
-            lat: locationData?.location?.coords?.latitude,
-        })
-
-        return [{locationData, weatherData}, null]
-    } catch (e) {
-        console.error(e)
-        return [null, e]
+        return e
     }
 }
 
@@ -47,7 +31,6 @@ export const weatherAPI = {
             units: 'metric',
             exclude: 'minutely',
         }),
-    refetchOneCall: performAPICalls
 }
 
 export const getWeatherIcon = (icon) => `${WEATHER_IMAGE_URL}/${icon}@4x.png`

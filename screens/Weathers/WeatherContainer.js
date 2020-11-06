@@ -26,7 +26,6 @@ const WeatherContainer = ({ navigation, route }) => {
 
     useEffect(() => {
         if (appState === 'active') {
-            console.log('appState', appState)
             dispatch(refetchOneCall())
         }
     }, [appState])

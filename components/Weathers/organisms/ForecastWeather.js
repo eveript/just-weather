@@ -46,45 +46,49 @@ const peakFilter = (formattedDate) => {
     )
 }
 
-export default ({ current, hourly, daily, ...rest }) => (
-    <Layout>
-        <HourlyLabel level="2">
-            <Text category="s2">피크타임 예보</Text>
-        </HourlyLabel>
-        <PeakForecastWrapper>
-            <HourlyForecast
-                iconScale={1}
-                hourly={hourly
-                    .filter((h, i) => i < 24)
-                    .filter((h, i) => peakFilter(dateFormat(h.dt * 1000, i)))
-                    .map((h, i) => ({
-                        ...h,
-                        displayDate: dateFormat(h.dt * 1000, i),
-                        highlight: peakFilter(dateFormat(h.dt * 1000, i)),
-                    }))}
-            />
-        </PeakForecastWrapper>
-        <HourlyLabel level="2">
-            <Text category="s2">시간별 예보</Text>
-        </HourlyLabel>
-        <HourlyForecastWrapper>
-            <HourlyForecast
-                hourly={hourly
-                    .filter((h, i) => i < 24)
-                    .map((h, i) => ({
-                        ...h,
-                        displayDate: dateFormat(h.dt * 1000, i),
-                        highlight: peakFilter(dateFormat(h.dt * 1000, i)),
-                    }))}
-            />
-        </HourlyForecastWrapper>
-        <DailyLabel level="2">
-            <Text category="s2">요일별 예보</Text>
-            <MinMaxWrapper level="2">
-                <Text category="s2">최고</Text>
-                <Text category="s2">최저</Text>
-            </MinMaxWrapper>
-        </DailyLabel>
-        <DailyForecast daily={daily} />
-    </Layout>
-)
+export default ({ current, hourly, daily, ...rest }) => {
+
+    return current && hourly && daily && (
+        <Layout>
+            <HourlyLabel level="2">
+                <Text category="s2">피크타임 예보</Text>
+            </HourlyLabel>
+            <PeakForecastWrapper>
+                <HourlyForecast
+                    iconScale={1}
+                    hourly={hourly
+                        .filter((h, i) => i < 24)
+                        .filter((h, i) => peakFilter(dateFormat(h.dt * 1000, i)))
+                        .map((h, i) => ({
+                            ...h,
+                            displayDate: dateFormat(h.dt * 1000, i),
+                            highlight: peakFilter(dateFormat(h.dt * 1000, i)),
+                        }))}
+                />
+            </PeakForecastWrapper>
+            <HourlyLabel level="2">
+                <Text category="s2">시간별 예보</Text>
+            </HourlyLabel>
+            <HourlyForecastWrapper>
+                <HourlyForecast
+                    hourly={hourly
+                        .filter((h, i) => i < 24)
+                        .map((h, i) => ({
+                            ...h,
+                            displayDate: dateFormat(h.dt * 1000, i),
+                            highlight: peakFilter(dateFormat(h.dt * 1000, i)),
+                        }))}
+                />
+            </HourlyForecastWrapper>
+            <DailyLabel level="2">
+                <Text category="s2">요일별 예보</Text>
+                <MinMaxWrapper level="2">
+                    <Text category="s2">최고</Text>
+                    <Text category="s2">최저</Text>
+                </MinMaxWrapper>
+            </DailyLabel>
+            <DailyForecast daily={daily} />
+        </Layout>
+    )
+
+}

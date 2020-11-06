@@ -13,7 +13,6 @@ import styled from 'styled-components/native'
 import 'dayjs/locale/ko'
 
 import Navigation from './navigation'
-import configureAppStore from './store'
 import { useValidScheme } from './hooks/useValidScheme'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
@@ -23,24 +22,16 @@ const SafeAreaView = styled(Layout)`
     padding-bottom: 20px;
 `
 
-const WeatherApp = ({ locationData, weatherData, error }) => {
-    const colorScheme = useValidScheme(useColorScheme())
 
+const WeatherApp = () => {
+    const colorScheme = useValidScheme(useColorScheme())
     return (
         <>
             <IconRegistry icons={[EvaIconsPack]} />
             <ApplicationProvider {...eva} theme={eva[colorScheme]}>
-                <Provider
-                    store={configureAppStore({
-                        location: locationData?.location,
-                        weather: weatherData,
-                        error,
-                    })}
-                >
-                    <SafeAreaView>
-                        <Navigation colorScheme={colorScheme} />
-                    </SafeAreaView>
-                </Provider>
+                <SafeAreaView>
+                    <Navigation colorScheme={colorScheme} />
+                </SafeAreaView>
                 <StatusBar style="auto" />
             </ApplicationProvider>
         </>
