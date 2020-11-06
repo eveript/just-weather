@@ -1,9 +1,6 @@
 import React from 'react'
 import { AppearanceProvider } from 'react-native-appearance'
-import {
-    initialWindowMetrics,
-    SafeAreaProvider,
-} from 'react-native-safe-area-context'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 
@@ -17,7 +14,7 @@ const App = () => {
     const { isLoadingComplete, ...weatherResource } = useCachedResources()
 
     return isLoadingComplete ? (
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <SafeAreaProvider>
             <AppearanceProvider>
                 <WeatherApp {...weatherResource} />
             </AppearanceProvider>

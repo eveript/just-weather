@@ -1,10 +1,9 @@
 import React from 'react'
 import CurrentWeather from '../../components/Weathers/organisms/CurrentWeather'
-import { Layout, Spinner, useTheme } from '@ui-kitten/components'
+import { Layout, Spinner } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import ForecastWeather from '../../components/Weathers/organisms/ForecastWeather'
 import HashTags from '../../components/Weathers/organisms/HashTags'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { Platform, ScrollView } from 'react-native'
 
 const WeatherBox = styled(Layout)`
@@ -56,14 +55,12 @@ const WebView = (props) => (
 )
 
 export default (props) => {
-    const theme = useTheme()
     return (
-        <SafeAreaView
+        <Layout
             style={{
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: theme['background-basic-color-1'],
             }}
         >
             {props.loading ? (
@@ -75,6 +72,6 @@ export default (props) => {
                     default: <WebView {...props} />,
                 })
             )}
-        </SafeAreaView>
+        </Layout>
     )
 }
