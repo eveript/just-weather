@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { API_KEY, WEATHER_IMAGE_URL, WEATHER_URL } from '../constants/Weathers'
-import {expoAPI} from "./expoAPI";
 
 const makeRequest = (path, params) => {
     return axios.get(path, {
