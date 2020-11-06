@@ -10,6 +10,7 @@ const WeatherBox = styled(Layout)`
     flex: 1;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
 `
 const CurrentWeatherBox = styled(Layout)`
     flex: 1;

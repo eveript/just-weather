@@ -8,10 +8,7 @@ const WeatherContainer = ({ navigation, route }) => {
     const appState = useAppState()
     const dispatch = useDispatch()
 
-    const { location, weather } = useSelector((state) => ({
-        location: state.location,
-        weather: state.weather,
-    }))
+    const { location, weather } = useSelector(state => state)
     useEffect(() => {
         if (location) {
             const { coords } = location
