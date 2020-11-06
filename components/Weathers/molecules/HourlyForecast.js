@@ -2,12 +2,11 @@ import React from 'react'
 import { Dimensions, ScrollView } from 'react-native'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import dayjs from 'dayjs'
 import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherIcon from '../atoms/WeatherIcon'
 
 const UnGrowScrollView = styled(ScrollView)`
-    flex-grow: 1;
+    flex: 1;
     width: ${Dimensions.get('window').width}px;
 `
 const HourCard = styled(Layout)`
@@ -19,33 +18,25 @@ const HourWeatherHeader = styled(Layout)`
 const HourWeatherFooter = styled(Layout)`
     align-items: center;
 `
-const HourlyForecast = ({ hourly }) => {
-    // dayjs.tz.setDefault(timezone)
-
-    const dateFormat = (date, index) => index === 0 ? '지금' : `${dayjs(date).format('A h')}시`
-
-    const isHighlight = (formattedDate) => {
-        return formattedDate === '지금' || formattedDate === '오전 8시' || formattedDate === '오후 6시'
-    }
+const HourlyForecast = ({ hourly, iconScale = 1 }) => {
 
     return (
         <UnGrowScrollView horizontal={true}>
             {hourly
-                .filter((h, i) => i < 24)
-                .map(({ dt, temp, weather: [weather] }, index) => {
+                .map(({ dt, temp, displayDate, highlight, weather: [weather] }, index) => {
                     return (
                         <HourCard
                             key={dt}
-                            highlight={isHighlight(dateFormat(dt * 1000, index))}
+                            highlight={highlight}
                         >
                             <HourWeatherHeader>
                                 <Text category="s1">
-                                    {dateFormat(dt * 1000, index)}
+                                    {displayDate}
                                 </Text>
                             </HourWeatherHeader>
                             <WeatherIcon
                                 source={{ uri: getWeatherIcon(weather.icon) }}
-                                scale={1}
+                                scale={iconScale}
                             />
                             <HourWeatherFooter>
                                 <Text category="s1">{`${parseInt(

@@ -28,6 +28,8 @@ const CurrentWeather = ({ current, daily }) => {
                 <Layout>
                     <Text category="s2">{`최고:${parseInt(daily[0].temp.max, 10)}°`}</Text>
                     <Text category="s2">{`최저:${parseInt(daily[0].temp.min, 10)}°`}</Text>
+                    <Text category="s2">{`오전:${parseInt(daily[0].temp.morn, 10)}°`}</Text>
+                    <Text category="s2">{`오후:${parseInt(daily[0].temp.eve, 10)}°`}</Text>
                 </Layout>
             </RowLayout>
             <Layout>
