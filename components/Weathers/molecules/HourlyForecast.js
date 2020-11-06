@@ -11,7 +11,7 @@ const UnGrowScrollView = styled(ScrollView)`
     width: ${Dimensions.get('window').width}px;
 `
 const HourCard = styled(Layout)`
-opacity: ${props => props.index === 0 ? 1 : 0.5};
+    opacity: ${(props) => (props.highlight ? 1 : 0.7)};
 `
 const HourWeatherHeader = styled(Layout)`
     align-items: center;
@@ -22,23 +22,25 @@ const HourWeatherFooter = styled(Layout)`
 const HourlyForecast = ({ hourly }) => {
     // dayjs.tz.setDefault(timezone)
 
-    const dateFormat = (date) => {
-        const [a, time] = dayjs(date).format('A h').split(' ')
-        const prefix = a === 'AM' ? '오전' : '오후'
-        return `${prefix} ${time}시`
+    const dateFormat = (date, index) => index === 0 ? '지금' : `${dayjs(date).format('A h')}시`
+
+    const isHighlight = (formattedDate) => {
+        return formattedDate === '지금' || formattedDate === '오전 8시' || formattedDate === '오후 6시'
     }
+
     return (
         <UnGrowScrollView horizontal={true}>
             {hourly
                 .filter((h, i) => i < 24)
                 .map(({ dt, temp, weather: [weather] }, index) => {
                     return (
-                        <HourCard key={dt} index={index}>
+                        <HourCard
+                            key={dt}
+                            highlight={isHighlight(dateFormat(dt * 1000, index))}
+                        >
                             <HourWeatherHeader>
                                 <Text category="s1">
-                                    {index !== 0
-                                        ? dateFormat(dt * 1000)
-                                        : '지금'}
+                                    {dateFormat(dt * 1000, index)}
                                 </Text>
                             </HourWeatherHeader>
                             <WeatherIcon
