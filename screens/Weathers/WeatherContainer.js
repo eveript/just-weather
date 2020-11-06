@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react'
-
-import { weatherAPI } from '../../apis/openWeatherMapAPI'
-import { useGeoLocation } from '../../hooks/useGeoLocation'
+import React, { useEffect } from 'react'
 import WeatherPresenter from './WeatherPresenter'
-import {useDispatch, useSelector} from "react-redux";
-import {useAppState} from "../../hooks/useAppState";
-import {refetchOneCall} from "../../slicers/weatherSlice";
+import { useDispatch, useSelector } from 'react-redux'
+import { useAppState } from '../../hooks/useAppState'
+import { refetchOneCall } from '../../slicers/weatherSlice'
 
 const WeatherContainer = ({ navigation, route }) => {
     const appState = useAppState()
     const dispatch = useDispatch()
 
-    const { location, weather } = useSelector(state => ({
-        location : state.location,
+    const { location, weather } = useSelector((state) => ({
+        location: state.location,
         weather: state.weather,
     }))
     useEffect(() => {
