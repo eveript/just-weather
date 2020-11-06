@@ -14,7 +14,7 @@ import 'dayjs/locale/ko'
 
 import Navigation from './navigation'
 import { useValidScheme } from './hooks/useValidScheme'
-import { EvaIconsPack } from '@ui-kitten/eva-icons'
+// import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
 const SafeAreaView = styled(Layout)`
     flex: 1;
@@ -27,7 +27,7 @@ const WeatherApp = () => {
     const colorScheme = useValidScheme(useColorScheme())
     return (
         <>
-            <IconRegistry icons={[EvaIconsPack]} />
+            {/*<IconRegistry icons={[EvaIconsPack]} />*/}
             <ApplicationProvider {...eva} theme={eva[colorScheme]}>
                 <SafeAreaView>
                     <Navigation colorScheme={colorScheme} />

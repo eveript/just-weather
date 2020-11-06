@@ -18,9 +18,11 @@ const WeatherContainer = ({ navigation, route }) => {
     useEffect(() => {
         if (location) {
             const { coords } = location
-            navigation.setOptions({
-                title: `${coords?.longitude}, ${coords?.latitude}`,
-            })
+            if (coords) {
+                navigation.setOptions({
+                    title: `${coords?.longitude}, ${coords?.latitude}`,
+                })
+            }
         }
     }, [location])
 
