@@ -1,8 +1,8 @@
 import React from 'react'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import HourlyPrediction from '../molecules/HourlyPrediction'
-import DailyPrediction from '../molecules/DailyPrediction'
+import HourlyForecast from '../molecules/HourlyForecast'
+import DailyForecast from '../molecules/DailyForecast'
 import RowLayout from '../../Eva/RowLayout'
 
 const HourlyLabel = styled(Layout)`
@@ -35,7 +35,7 @@ export default ({ current, hourly, daily, ...rest }) => (
             <Text category="s2">시간별 예보</Text>
         </HourlyLabel>
         <HourlyScrollView>
-            <HourlyPrediction hourly={hourly} />
+            <HourlyForecast hourly={hourly} />
         </HourlyScrollView>
         <DailyLabel level="2">
             <Text category="s2">요일별 예보</Text>
@@ -44,6 +44,6 @@ export default ({ current, hourly, daily, ...rest }) => (
                 <Text category="s2">최저</Text>
             </MinMaxWrapper>
         </DailyLabel>
-        <DailyPrediction daily={daily} />
+        <DailyForecast daily={daily} />
     </Layout>
 )

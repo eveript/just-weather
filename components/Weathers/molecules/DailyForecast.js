@@ -19,7 +19,7 @@ const MinMaxWrapper = styled(RowLayout)`
     width: 70px;
     justify-content: space-between;
 `
-const DailyPrediction = ({ daily }) => {
+const DailyForecast = ({ daily }) => {
     // dayjs.tz.setDefault(timezone)
 
     const dateFormat = (date) => {
@@ -59,4 +59,4 @@ const DailyPrediction = ({ daily }) => {
     )
 }
 
-export default DailyPrediction
+export default DailyForecast

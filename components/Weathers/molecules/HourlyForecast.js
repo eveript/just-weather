@@ -19,7 +19,7 @@ const HourWeatherHeader = styled(Layout)`
 const HourWeatherFooter = styled(Layout)`
     align-items: center;
 `
-const HourlyPrediction = ({ hourly }) => {
+const HourlyForecast = ({ hourly }) => {
     // dayjs.tz.setDefault(timezone)
 
     const dateFormat = (date) => {
@@ -58,4 +58,4 @@ const HourlyPrediction = ({ hourly }) => {
     )
 }
 
-export default HourlyPrediction
+export default HourlyForecast

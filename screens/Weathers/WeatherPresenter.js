@@ -2,7 +2,7 @@ import React from 'react'
 import CurrentWeather from '../../components/Weathers/organisms/CurrentWeather'
 import { Layout, Spinner, useTheme } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import PredictWeather from '../../components/Weathers/organisms/PredictWeather'
+import ForecastWeather from '../../components/Weathers/organisms/ForecastWeather'
 import HashTags from '../../components/Weathers/organisms/HashTags'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Platform, ScrollView } from 'react-native'
@@ -33,7 +33,7 @@ const WeatherContents = (props) => (
             <HashTags {...props} />
         </TagBox>
         <PredictWeatherBox>
-            <PredictWeather {...props} />
+            <ForecastWeather {...props} />
         </PredictWeatherBox>
     </>
 )
