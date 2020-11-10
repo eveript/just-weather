@@ -5,8 +5,7 @@ export const useAppState = () => {
     const [appStatus, setAppStatus] = useState()
     useEffect(() => {
         AppState.addEventListener('change', (appState) => {
-            // inactive background
-            // active
+            // inactive, background, active
             setAppStatus(appState)
         })
     }, [])

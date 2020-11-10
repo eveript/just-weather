@@ -6,7 +6,7 @@ export const useValidScheme = (colorScheme) => {
     const [scheme, setScheme] = useState(colorScheme)
 
     useEffect(() => {
-        if (appState !== 'background') {
+        if (appState === 'active') {
             setScheme(colorScheme)
         }
     }, [appState, colorScheme])
