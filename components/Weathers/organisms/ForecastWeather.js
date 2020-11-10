@@ -11,8 +11,7 @@ import WeatherAvatar from '../atoms/WeatherAvatar'
 const HourlyLabel = styled(Layout)`
     margin-top: 10px;
     margin-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px 10px;
     flex-direction: row;
 `
 const AmPmForecastWrapper = styled(RowLayout)`
@@ -28,6 +27,8 @@ const HourlyForecastWrapper = styled(Layout)`
 const DailyLabel = styled(Layout)`
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 18px;
     flex-direction: row;
@@ -54,20 +55,20 @@ export default ({ current, hourly, daily, ...rest }) => {
                 </HourlyLabel>
                 <AmPmForecastWrapper>
                     <AmPmCard>
-                        <Text>오전</Text>
+                        <Text category="s1">오전</Text>
                         <WeatherAvatar
                             source={{ uri: getWeatherIcon('01d') }}
                             scale={1}
                         />
-                        <Text>{daily[0].temp.morn}</Text>
+                        <Text category="s1">{daily[0].temp.morn}</Text>
                     </AmPmCard>
                     <AmPmCard>
-                        <Text>오후</Text>
+                        <Text category="s1">오후</Text>
                         <WeatherAvatar
                             source={{ uri: getWeatherIcon('01n') }}
                             scale={1}
                         />
-                        <Text>{daily[0].temp.eve}</Text>
+                        <Text category="s1">{daily[0].temp.eve}</Text>
                     </AmPmCard>
                 </AmPmForecastWrapper>
                 <HourlyLabel level="2">
