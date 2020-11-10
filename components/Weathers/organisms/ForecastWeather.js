@@ -60,7 +60,10 @@ export default ({ current, hourly, daily, ...rest }) => {
                             source={{ uri: getWeatherIcon('01d') }}
                             scale={1}
                         />
-                        <Text category="s1">{daily[0].temp.morn}</Text>
+                        <Text category="s1">{`${parseInt(
+                            daily[0].temp.morn,
+                            10,
+                        )}°`}</Text>
                     </AmPmCard>
                     <AmPmCard>
                         <Text category="s1">오후</Text>
@@ -68,7 +71,10 @@ export default ({ current, hourly, daily, ...rest }) => {
                             source={{ uri: getWeatherIcon('01n') }}
                             scale={1}
                         />
-                        <Text category="s1">{daily[0].temp.eve}</Text>
+                        <Text category="s1">{`${parseInt(
+                            daily[0].temp.eve,
+                            10,
+                        )}°`}</Text>
                     </AmPmCard>
                 </AmPmForecastWrapper>
                 <HourlyLabel level="2">
