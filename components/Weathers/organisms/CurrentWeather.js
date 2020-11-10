@@ -14,6 +14,12 @@ const SummaryBox = styled(Layout)`
 const TempText = styled(Text)`
     margin-right: 10px;
 `
+const SubTempLayout = styled(Layout)`
+    padding: 10px;
+`
+const SubTempText = styled(Text)`
+    padding: 2px 0;
+`
 
 const CurrentWeather = ({ current, daily }) => {
     return (
@@ -34,24 +40,24 @@ const CurrentWeather = ({ current, daily }) => {
                             ? `${parseInt(current.temp, 10)}°`
                             : ''}
                     </TempText>
-                    <Layout>
-                        <Text category="s2">{`최고:${parseInt(
+                    <SubTempLayout>
+                        <SubTempText className="subTempText" category="s2">{`최고:${parseInt(
                             daily[0].temp.max,
                             10,
-                        )}°`}</Text>
-                        <Text category="s2">{`최저:${parseInt(
+                        )}°`}</SubTempText>
+                        <SubTempText category="s2">{`최저:${parseInt(
                             daily[0].temp.min,
                             10,
-                        )}°`}</Text>
-                        <Text category="s2">{`오전:${parseInt(
+                        )}°`}</SubTempText>
+                        <SubTempText category="s2">{`오전:${parseInt(
                             daily[0].temp.morn,
                             10,
-                        )}°`}</Text>
-                        <Text category="s2">{`오후:${parseInt(
+                        )}°`}</SubTempText>
+                        <SubTempText category="s2">{`오후:${parseInt(
                             daily[0].temp.eve,
                             10,
-                        )}°`}</Text>
-                    </Layout>
+                        )}°`}</SubTempText>
+                    </SubTempLayout>
                 </RowLayout>
                 <Layout>
                     <Text category="h6">어제보다 1도 낮아요[아직 미구현]</Text>
