@@ -4,7 +4,7 @@ import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import RowLayout from '../../Eva/RowLayout'
 import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
-import WeatherIcon from '../atoms/WeatherIcon'
+import WeatherAvatar from '../atoms/WeatherAvatar'
 
 const SummaryBox = styled(Layout)`
     flex: 1;
@@ -21,7 +21,7 @@ const CurrentWeather = ({ current, daily }) => {
         daily && (
             <SummaryBox>
                 <Layout>
-                    <WeatherIcon
+                    <WeatherAvatar
                         source={{
                             uri: getWeatherIcon(current.weather[0].icon),
                         }}

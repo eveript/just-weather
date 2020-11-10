@@ -2,7 +2,7 @@ import React from 'react'
 import {useColorScheme} from 'react-native-appearance'
 import {StatusBar} from 'expo-status-bar'
 import * as eva from '@eva-design/eva'
-import {ApplicationProvider, Layout,} from '@ui-kitten/components'
+import {ApplicationProvider, IconRegistry, Layout,} from '@ui-kitten/components'
 import styled from 'styled-components/native'
 
 import 'dayjs/locale/ko'
