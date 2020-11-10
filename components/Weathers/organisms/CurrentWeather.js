@@ -13,6 +13,10 @@ const SummaryBox = styled(Layout)`
 `
 SummaryBox.displayName = 'SummaryBox'
 
+const RowLayoutWrapper = styled(RowLayout)`
+  flex: 1;
+`
+
 const TempText = styled(Text)`
     margin-right: 10px;
 `
@@ -41,7 +45,7 @@ const CurrentWeather = ({ current, daily }) => {
                         scale={2}
                     />
                 </Layout>
-                <RowLayout>
+                <RowLayoutWrapper>
                     <TempText category="h1">
                         {isNumber(current.temp)
                             ? `${parseInt(current.temp, 10)}°`
@@ -65,7 +69,7 @@ const CurrentWeather = ({ current, daily }) => {
                             10,
                         )}°`}</SubTempText>
                     </SubTempLayout>
-                </RowLayout>
+                </RowLayoutWrapper>
                 <Layout>
                     <Text category="h6">어제보다 1도 낮아요[아직 미구현]</Text>
                 </Layout>
