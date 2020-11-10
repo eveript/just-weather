@@ -11,15 +11,22 @@ const SummaryBox = styled(Layout)`
     justify-content: center;
     align-items: center;
 `
+SummaryBox.displayName = 'SummaryBox'
+
 const TempText = styled(Text)`
     margin-right: 10px;
 `
+TempText.displayName='TempText'
+
 const SubTempLayout = styled(Layout)`
     padding: 10px;
 `
+SubTempLayout.displayName='SubTempLayout'
+
 const SubTempText = styled(Text)`
     padding: 2px 0;
 `
+SubTempText.displayName='SubTempText'
 
 const CurrentWeather = ({ current, daily }) => {
     return (
