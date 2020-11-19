@@ -1,35 +1,15 @@
-import axios from 'axios'
-import { API_KEY, WEATHER_IMAGE_URL, WEATHER_URL } from '../constants/Weathers'
+import { WEATHER_IMAGE_URL, WEATHER_URL } from '../constants/Weathers'
+import { getWeather } from './apiUtils'
 
-const makeRequest = (path, params) => {
-    return axios.get(path, {
-        params: {
-            ...params,
-            appid: API_KEY,
-        },
+export const currentWeather = ({ lon, lat }) =>
+    getWeather(`${WEATHER_URL}/weather`, { lon, lat, units: 'metric' })
+
+export const oneCall = ({ lon, lat }) =>
+    getWeather(`${WEATHER_URL}/onecall`, {
+        lon,
+        lat,
+        units: 'metric',
+        exclude: 'minutely',
     })
-}
-
-const getAnything = async (path, params = {}) => {
-    try {
-        const { data } = await makeRequest(path, params)
-        return data
-    } catch (e) {
-        console.error(e)
-        return e
-    }
-}
-
-export const weatherAPI = {
-    currentWeather: ({ lon, lat }) =>
-        getAnything(`${WEATHER_URL}/weather`, { lon, lat, units: 'metric' }),
-    oneCall: ({ lon, lat }) =>
-        getAnything(`${WEATHER_URL}/onecall`, {
-            lon,
-            lat,
-            units: 'metric',
-            exclude: 'minutely',
-        }),
-}
 
 export const getWeatherIcon = (icon) => `${WEATHER_IMAGE_URL}/${icon}@4x.png`

@@ -1,6 +1,6 @@
 import * as Location from 'expo-location'
 
-const getLocation = async () => {
+export const getLocation = async () => {
     let { status } = await Location.requestPermissionsAsync()
     let error
     if (status !== 'granted') {
@@ -13,6 +13,3 @@ const getLocation = async () => {
     return { location, status, error }
 }
 
-export const expoAPI = {
-    getLocation,
-}

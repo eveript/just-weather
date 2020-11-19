@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import {weatherAPI} from "../apis/openWeatherMapAPI";
-import {expoAPI} from "../apis/expoAPI";
-import {setLocation} from "./locationSlice";
+import {expoAPI, weatherAPI, geoAPI} from "../apis";
+import {getAddress, setLocation} from "./locationSlice";
 
 
 export const refetchOneCall = createAsyncThunk('weather/refetchOneCall', async (arg, thunkAPI) => {
@@ -9,12 +8,14 @@ export const refetchOneCall = createAsyncThunk('weather/refetchOneCall', async (
     try {
         const locationData = await expoAPI.getLocation()
 
-        const weatherData = await weatherAPI.oneCall({
+        const point = {
             lon: locationData?.location?.coords?.longitude,
             lat: locationData?.location?.coords?.latitude,
-        })
+        }
+        const weatherData = await weatherAPI.oneCall(point)
 
         thunkAPI.dispatch(setLocation(locationData.location))
+        thunkAPI.dispatch(getAddress(point))
 
         return weatherData
     } catch (e) {
