@@ -8,7 +8,7 @@ export const getLocation = async () => {
     }
 
     const location = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.High,
+        accuracy: Location.Accuracy.Low,
     })
     return { location, status, error }
 }
