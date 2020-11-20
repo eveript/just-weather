@@ -11,10 +11,10 @@ const WeatherContainer = ({ navigation, route }) => {
     const { location, weather } = useSelector(state => state)
     useEffect(() => {
         if (location) {
-            const { coords } = location
+            const { coords, address } = location
             if (coords) {
                 navigation.setOptions({
-                    title: `${coords?.longitude}, ${coords?.latitude}`,
+                    title: address?.level4A,
                 })
             }
         }

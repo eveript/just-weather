@@ -6,10 +6,10 @@ export const getAddress = createAsyncThunk(
     async (arg, thunkAPI) => {
         try {
             const addressData = await geoAPI.getAddress(arg)
-
-            return addressData
+            const { structure } = addressData.response.result[0]
+            return structure
         } catch (e) {
-            return thunkAPI.rejectWithValue(e)
+            return thunkAPI.rejectWithValue(e.message)
         }
     },
 )
@@ -35,7 +35,7 @@ const locationSlice = createSlice({
                 state.loading = true
             })
             .addCase(getAddress.fulfilled, (state, action) => {
-                console.log(action.payload)
+                state.address = action.payload
                 state.loading = false
             })
             .addCase(getAddress.rejected, (state, action) => {
