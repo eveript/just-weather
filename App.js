@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react'
+import { Platform } from 'react-native'
+import { enableScreens } from 'react-native-screens'
+
 import { AppearanceProvider } from 'react-native-appearance'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import dayjs from 'dayjs'
@@ -9,6 +12,8 @@ import WeatherApp from './WeatherApp'
 import configureAppStore from './store'
 import { Provider } from 'react-redux'
 import { refetchOneCall } from './slicers/weatherSlice'
+
+enableScreens()
 
 dayjs.locale('ko')
 
@@ -24,13 +29,21 @@ const App = () => {
     }, [])
 
     return isLoadingComplete ? (
-        <Provider store={store}>
-            <SafeAreaProvider>
+        Platform.OS === 'web' ? (
+            <Provider store={store}>
+                <SafeAreaProvider>
+                    <AppearanceProvider>
+                        <WeatherApp />
+                    </AppearanceProvider>
+                </SafeAreaProvider>
+            </Provider>
+        ) : (
+            <Provider store={store}>
                 <AppearanceProvider>
                     <WeatherApp />
                 </AppearanceProvider>
-            </SafeAreaProvider>
-        </Provider>
+            </Provider>
+        )
     ) : null
 }
 
