@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
-import { Platform } from 'react-native'
 import { enableScreens } from 'react-native-screens'
 
 import { AppearanceProvider } from 'react-native-appearance'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 
 import useCachedResources from './src/hooks/useCachedResources'
 import WeatherApp from './src/WeatherApp'
-import configureAppStore from './src/store'
+import configureAppStore from './src/redux/store'
 import { Provider } from 'react-redux'
-import { refetchOneCall } from './src/slicers/weatherSlice'
+import { refetchOneCall } from './src/redux/slices/weatherSlice'
 
 enableScreens()
 
@@ -29,21 +27,11 @@ const App = () => {
     }, [])
 
     return isLoadingComplete ? (
-        Platform.OS === 'web' ? (
-            <Provider store={store}>
-                <SafeAreaProvider>
-                    <AppearanceProvider>
-                        <WeatherApp />
-                    </AppearanceProvider>
-                </SafeAreaProvider>
-            </Provider>
-        ) : (
-            <Provider store={store}>
-                <AppearanceProvider>
-                    <WeatherApp />
-                </AppearanceProvider>
-            </Provider>
-        )
+        <Provider store={store}>
+            <AppearanceProvider>
+                <WeatherApp />
+            </AppearanceProvider>
+        </Provider>
     ) : null
 }
 

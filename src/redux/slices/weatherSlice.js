@@ -1,25 +1,33 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { expoAPI, weatherAPI, geoAPI } from '../apis'
+import { expoAPI, weatherAPI, geoAPI } from '../../apis'
 import { getAddress, setLocation } from './locationSlice'
+import * as Location from 'expo-location'
 
 export const refetchOneCall = createAsyncThunk(
     'weather/refetchOneCall',
     async (arg, thunkAPI) => {
         try {
-            const locationData = await expoAPI.getLocation()
+            let { status } = await Location.requestPermissionsAsync()
+            if (status !== 'granted') {
+                console.error('Permission to access location was denied')
+            }
+
+            const location = await Location.getCurrentPositionAsync({
+                accuracy: Location.Accuracy.Low,
+            })
 
             const point = {
-                lon: locationData?.location?.coords?.longitude,
-                lat: locationData?.location?.coords?.latitude,
+                lon: location?.coords?.longitude,
+                lat: location?.coords?.latitude,
             }
             const weatherData = await weatherAPI.oneCall(point)
 
-            thunkAPI.dispatch(setLocation(locationData.location))
+            thunkAPI.dispatch(setLocation(location))
             thunkAPI.dispatch(getAddress(point))
 
             return weatherData
         } catch (e) {
-            return thunkAPI.rejectWithValue(e)
+            return thunkAPI.rejectWithValue(e.message)
         }
     },
 )

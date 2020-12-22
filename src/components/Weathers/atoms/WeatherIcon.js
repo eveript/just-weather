@@ -1,5 +1,5 @@
 import React from 'react'
-import {Icon} from '@ui-kitten/components'
+import { Icon } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import PropTypes from 'prop-types'
 

@@ -16,6 +16,7 @@ SummaryBox.displayName = 'SummaryBox'
 const RowLayoutWrapper = styled(RowLayout)`
     flex: 1;
 `
+RowLayoutWrapper.displayName = 'RowLayoutWrapper'
 
 const TempText = styled(Text)`
     margin-right: 10px;

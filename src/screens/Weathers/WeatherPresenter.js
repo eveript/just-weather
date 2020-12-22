@@ -6,42 +6,53 @@ import ForecastWeather from '../../components/Weathers/organisms/ForecastWeather
 import HashTags from '../../components/Weathers/organisms/HashTags'
 import { Platform, ScrollView } from 'react-native'
 
-const WeatherBox = styled(Layout)`
+const StyledWeatherOuterWrapper = styled(Layout)`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
+const StyledWeatherInnerWrapper = styled(Layout)`
+    align-self: stretch;
+    flex: 1;
+`
+const StyledWeatherBox = styled(Layout)`
     flex: 1;
     align-items: center;
     justify-content: center;
     overflow-y: auto;
 `
-const CurrentWeatherBox = styled(Layout)`
+const StyledTagBox = styled(Layout)``
+const StyledCurrentWeatherBox = styled(Layout)`
     flex: 1;
     justify-content: center;
     align-items: center;
 `
-const TagBox = styled(Layout)``
-const PredictWeatherBox = styled(Layout)`
+const StyledPredictWeatherBox = styled(Layout)`
     flex: 1;
     justify-content: flex-start;
     align-items: center;
 `
 
 const WeatherContents = (props) => (
-    <>
-        <CurrentWeatherBox>
+    <StyledWeatherInnerWrapper>
+        <StyledCurrentWeatherBox>
             <CurrentWeather {...props} />
-        </CurrentWeatherBox>
-        <TagBox>
+        </StyledCurrentWeatherBox>
+        <StyledTagBox>
             <HashTags {...props} />
-        </TagBox>
-        <PredictWeatherBox>
+        </StyledTagBox>
+        <StyledPredictWeatherBox>
             <ForecastWeather {...props} />
-        </PredictWeatherBox>
-    </>
+        </StyledPredictWeatherBox>
+    </StyledWeatherInnerWrapper>
 )
 
 const MobileView = (props) => (
     <ScrollView
+        style={{ alignSelf: 'stretch' }}
         contentContainerStyle={{
             alignItems: 'center',
+            flex: 1,
         }}
         horizontal={false}
     >
@@ -50,20 +61,14 @@ const MobileView = (props) => (
 )
 
 const WebView = (props) => (
-    <WeatherBox>
+    <StyledWeatherBox>
         <WeatherContents {...props} />
-    </WeatherBox>
+    </StyledWeatherBox>
 )
 
 export default (props) => {
     return (
-        <Layout
-            style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
+        <StyledWeatherOuterWrapper>
             {props.loading ? (
                 <Spinner />
             ) : (
@@ -73,6 +78,6 @@ export default (props) => {
                     default: <WebView {...props} />,
                 })
             )}
-        </Layout>
+        </StyledWeatherOuterWrapper>
     )
 }

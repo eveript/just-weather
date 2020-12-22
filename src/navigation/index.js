@@ -9,7 +9,11 @@ import LinkingConfiguration from './LinkingConfiguration'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import { TopNavigation, useTheme } from '@ui-kitten/components'
 import WeatherContainer from '../screens/Weathers'
+import styled from 'styled-components/native'
 
+const StyledTopNavigation = styled(TopNavigation)`
+    width: 100%;
+`
 const Stack = createStackNavigator()
 
 const Navigation = React.forwardRef(({ colorScheme }, ref) => {
@@ -27,16 +31,13 @@ const Navigation = React.forwardRef(({ colorScheme }, ref) => {
                     component={WeatherContainer}
                     options={{
                         headerTitle: (props) => (
-                            <TopNavigation
+                            <StyledTopNavigation
                                 alignment="center"
                                 title={
                                     props?.children === 'Root'
-                                        ? ''
+                                        ? 'Title...'
                                         : props?.children
                                 }
-                                style={{
-                                    width: '100%',
-                                }}
                                 // accessoryLeft={renderBackAction}
                                 // accessoryRight={renderRightActions}
                             />

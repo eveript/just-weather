@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { geoAPI } from '../apis'
+import { geoAPI } from '../../apis'
 
 export const getAddress = createAsyncThunk(
     'geo/getAddress',
