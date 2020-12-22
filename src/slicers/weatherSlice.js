@@ -1,27 +1,28 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import {expoAPI, weatherAPI, geoAPI} from "../apis";
-import {getAddress, setLocation} from "./locationSlice";
+import { expoAPI, weatherAPI, geoAPI } from '../apis'
+import { getAddress, setLocation } from './locationSlice'
 
+export const refetchOneCall = createAsyncThunk(
+    'weather/refetchOneCall',
+    async (arg, thunkAPI) => {
+        try {
+            const locationData = await expoAPI.getLocation()
 
-export const refetchOneCall = createAsyncThunk('weather/refetchOneCall', async (arg, thunkAPI) => {
+            const point = {
+                lon: locationData?.location?.coords?.longitude,
+                lat: locationData?.location?.coords?.latitude,
+            }
+            const weatherData = await weatherAPI.oneCall(point)
 
-    try {
-        const locationData = await expoAPI.getLocation()
+            thunkAPI.dispatch(setLocation(locationData.location))
+            thunkAPI.dispatch(getAddress(point))
 
-        const point = {
-            lon: locationData?.location?.coords?.longitude,
-            lat: locationData?.location?.coords?.latitude,
+            return weatherData
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e)
         }
-        const weatherData = await weatherAPI.oneCall(point)
-
-        thunkAPI.dispatch(setLocation(locationData.location))
-        thunkAPI.dispatch(getAddress(point))
-
-        return weatherData
-    } catch (e) {
-        return thunkAPI.rejectWithValue(e)
-    }
-})
+    },
+)
 
 const weatherSlice = createSlice({
     name: 'weather',
@@ -39,7 +40,7 @@ const weatherSlice = createSlice({
             state.daily = daily
         },
     },
-    extraReducers: builder => {
+    extraReducers: (builder) => {
         builder
             .addCase(refetchOneCall.pending, (state, action) => {
                 state.loading = true
@@ -60,11 +61,9 @@ const weatherSlice = createSlice({
                 }
                 state.loading = false
             })
-    }
+    },
 })
 
-export const {
-    setWeather
-} = weatherSlice.actions
+export const { setWeather } = weatherSlice.actions
 
 export default weatherSlice.reducer

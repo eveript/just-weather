@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as Location from 'expo-location'
-import {expoAPI} from "../apis/expoAPI";
+import { expoAPI } from '../apis/expoAPI'
 
 export const useGeoLocation = () => {
     const [location, setLocation] = useState(null)

@@ -12,4 +12,3 @@ export const getLocation = async () => {
     })
     return { location, status, error }
 }
-

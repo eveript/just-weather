@@ -14,23 +14,23 @@ const SummaryBox = styled(Layout)`
 SummaryBox.displayName = 'SummaryBox'
 
 const RowLayoutWrapper = styled(RowLayout)`
-  flex: 1;
+    flex: 1;
 `
 
 const TempText = styled(Text)`
     margin-right: 10px;
 `
-TempText.displayName='TempText'
+TempText.displayName = 'TempText'
 
 const SubTempLayout = styled(Layout)`
     padding: 10px;
 `
-SubTempLayout.displayName='SubTempLayout'
+SubTempLayout.displayName = 'SubTempLayout'
 
 const SubTempText = styled(Text)`
     padding: 2px 0;
 `
-SubTempText.displayName='SubTempText'
+SubTempText.displayName = 'SubTempText'
 
 const CurrentWeather = ({ current, daily }) => {
     return (
@@ -52,7 +52,10 @@ const CurrentWeather = ({ current, daily }) => {
                             : ''}
                     </TempText>
                     <SubTempLayout>
-                        <SubTempText className="subTempText" category="s2">{`최고:${parseInt(
+                        <SubTempText
+                            className="subTempText"
+                            category="s2"
+                        >{`최고:${parseInt(
                             daily[0].temp.max,
                             10,
                         )}°`}</SubTempText>

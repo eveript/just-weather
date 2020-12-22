@@ -7,11 +7,11 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 
-import useCachedResources from './hooks/useCachedResources'
-import WeatherApp from './WeatherApp'
-import configureAppStore from './store'
+import useCachedResources from './src/hooks/useCachedResources'
+import WeatherApp from './src/WeatherApp'
+import configureAppStore from './src/store'
 import { Provider } from 'react-redux'
-import { refetchOneCall } from './slicers/weatherSlice'
+import { refetchOneCall } from './src/slicers/weatherSlice'
 
 enableScreens()
 
