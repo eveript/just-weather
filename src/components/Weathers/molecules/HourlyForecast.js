@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, ScrollView } from 'react-native'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
+import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
 
 const UnGrowScrollView = styled(ScrollView)`
@@ -28,7 +28,7 @@ const HourlyForecast = ({ hourly, iconScale = 1 }) => {
                             <Text category="s1">{displayDate}</Text>
                         </HourWeatherHeader>
                         <WeatherAvatar
-                            source={{ uri: getWeatherIcon(weather.icon) }}
+                            source={{ uri: getOpenWeatherIcon(weather.icon) }}
                             scale={iconScale}
                         />
                         <HourWeatherFooter>

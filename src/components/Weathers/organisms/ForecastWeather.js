@@ -5,7 +5,7 @@ import HourlyForecast from '../molecules/HourlyForecast'
 import DailyForecast from '../molecules/DailyForecast'
 import RowLayout from '../../Eva/RowLayout'
 import dayjs from 'dayjs'
-import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
+import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
 
 const HourlyLabel = styled(Layout)`
@@ -57,7 +57,7 @@ export default ({ current, hourly, daily, ...rest }) => {
                     <AmPmCard>
                         <Text category="s1">오전</Text>
                         <WeatherAvatar
-                            source={{ uri: getWeatherIcon('01d') }}
+                            source={{ uri: getOpenWeatherIcon('01d') }}
                             scale={1}
                         />
                         <Text category="s1">{`${parseInt(
@@ -68,7 +68,7 @@ export default ({ current, hourly, daily, ...rest }) => {
                     <AmPmCard>
                         <Text category="s1">오후</Text>
                         <WeatherAvatar
-                            source={{ uri: getWeatherIcon('01n') }}
+                            source={{ uri: getOpenWeatherIcon('01n') }}
                             scale={1}
                         />
                         <Text category="s1">{`${parseInt(

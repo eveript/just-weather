@@ -3,7 +3,7 @@ import { isNumber } from 'lodash'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import RowLayout from '../../Eva/RowLayout'
-import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
+import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
 
 const SummaryBox = styled(Layout)`
@@ -41,7 +41,7 @@ const CurrentWeather = ({ current, daily }) => {
                 <Layout>
                     <WeatherAvatar
                         source={{
-                            uri: getWeatherIcon(current.weather[0].icon),
+                            uri: getOpenWeatherIcon(current.weather[0].icon),
                         }}
                         scale={2}
                     />

@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, List, ListItem, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import dayjs from 'dayjs'
-import { getWeatherIcon } from '../../../apis/openWeatherMapAPI'
+import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
 import RowLayout from '../../Eva/RowLayout'
 
@@ -36,7 +36,7 @@ const DailyForecast = ({ daily }) => {
                 <Text>{dateFormat(item.dt * 1000)}</Text>
                 <WeatherIconWrapper>
                     <WeatherAvatar
-                        source={{ uri: getWeatherIcon(weather.icon) }}
+                        source={{ uri: getOpenWeatherIcon(weather.icon) }}
                         scale={0.5}
                     />
                 </WeatherIconWrapper>

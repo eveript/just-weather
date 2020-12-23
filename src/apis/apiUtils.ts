@@ -1,8 +1,9 @@
 import axios from 'axios'
 import * as Weathers from '../constants/Weathers'
 import * as Geo from '../constants/Geo'
+import { GeoParams, WeatherParams } from './types'
 
-const makeWeatherRequest = (path, params) => {
+const makeWeatherRequest = (path: string, params: WeatherParams) => {
     return axios.get(path, {
         params: {
             ...params,
@@ -10,7 +11,7 @@ const makeWeatherRequest = (path, params) => {
         },
     })
 }
-const makeGeoRequest = (path, params) => {
+const makeGeoRequest = (path: string, params: GeoParams) => {
     return axios.get(path, {
         params: {
             ...params,
@@ -19,7 +20,7 @@ const makeGeoRequest = (path, params) => {
     })
 }
 
-export const getWeather = async (path, params = {}) => {
+export const getWeather = async (path: string, params: WeatherParams) => {
     try {
         const { data } = await makeWeatherRequest(path, params)
         return data
@@ -29,7 +30,7 @@ export const getWeather = async (path, params = {}) => {
     }
 }
 
-export const getGeo = async (path, params = {}) => {
+export const getGeo = async (path: string, params: GeoParams) => {
     try {
         const { data } = await makeGeoRequest(path, params)
         return data
