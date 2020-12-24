@@ -2,7 +2,7 @@ import React from 'react'
 import { isNumber } from 'lodash'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import RowLayout from '../../Eva/RowLayout'
+import RowLayout from '../../common/atoms/RowLayout'
 import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
 

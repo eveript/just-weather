@@ -1,9 +1,9 @@
 import React from 'react'
-import CurrentWeather from '../../components/Weathers/organisms/CurrentWeather'
+import CurrentWeather from '../../components/weathers/organisms/CurrentWeather'
 import { Layout, Spinner } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import ForecastWeather from '../../components/Weathers/organisms/ForecastWeather'
-import HashTags from '../../components/Weathers/organisms/HashTags'
+import ForecastWeather from '../../components/weathers/organisms/ForecastWeather'
+import HashTags from '../../components/weathers/atoms/HashTags'
 import { Platform, ScrollView } from 'react-native'
 
 const StyledWeatherOuterWrapper = styled(Layout)`

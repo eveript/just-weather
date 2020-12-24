@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import LinkingConfiguration from './LinkingConfiguration'
 import NotFoundScreen from '../screens/NotFoundScreen'
 import { TopNavigation, useTheme } from '@ui-kitten/components'
-import WeatherContainer from '../screens/Weathers'
+import WeatherContainer from '../screens/weathers'
 import styled from 'styled-components/native'
 
 const StyledTopNavigation = styled(TopNavigation)`

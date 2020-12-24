@@ -22,7 +22,7 @@
         "@types/react-native": "^0.63.42",
         "@types/react-redux": "^7.1.11",
         "@types/react-test-renderer": "^17.0.0",
-        "@types/styled-components": "^5.1.7",
+        "@types/styled-components-react-native": "^5.1.0",
         "@typescript-eslint/eslint-plugin": "^4.11.0",
         "@typescript-eslint/parser": "^4.11.0",
         "@ui-kitten/components": "^5.0.0",
