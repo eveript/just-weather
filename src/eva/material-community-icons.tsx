@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 export const MaterialCommunityIconsPack = {
     name: 'material-community',
@@ -18,11 +18,17 @@ function createIconsMap() {
     )
 }
 
-const IconProvider = (name) => ({
-    toReactElement: (props) => MaterialCommunityIcon({ name, ...props }),
+const IconProvider = (name: string | any) => ({
+    toReactElement: (props: any) => MaterialCommunityIcon({ name, ...props }),
 })
 
-function MaterialCommunityIcon({ name, style }) {
+function MaterialCommunityIcon({
+    name,
+    style,
+}: {
+    name: string | any
+    style: any
+}) {
     const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style)
     return (
         <MaterialCommunityIcons
