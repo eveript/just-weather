@@ -16,11 +16,10 @@ const StyledTopNavigation = styled(TopNavigation)`
 `
 const Stack = createStackNavigator()
 
-const Navigation = React.forwardRef(({ colorScheme }, ref) => {
+const Navigation = ({ colorScheme }: { colorScheme: string }) => {
     const theme = useTheme()
     return (
         <NavigationContainer
-            ref={ref}
             linking={LinkingConfiguration}
             theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
         >
@@ -55,5 +54,6 @@ const Navigation = React.forwardRef(({ colorScheme }, ref) => {
             </Stack.Navigator>
         </NavigationContainer>
     )
-})
+}
+
 export default Navigation

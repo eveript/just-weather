@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { expoAPI, weatherAPI, geoAPI } from '../../apis'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { weatherAPI } from '../../apis'
 import { getAddress, setLocation } from './locationSlice'
 import * as Location from 'expo-location'
 
@@ -7,7 +7,7 @@ export const refetchOneCall = createAsyncThunk(
     'weather/refetchOneCall',
     async (arg, thunkAPI) => {
         try {
-            let { status } = await Location.requestPermissionsAsync()
+            const { status } = await Location.requestPermissionsAsync()
             if (status !== 'granted') {
                 console.error('Permission to access location was denied')
             }
@@ -39,6 +39,7 @@ const weatherSlice = createSlice({
         hourly: null,
         daily: null,
         loading: false,
+        error: null,
     },
     reducers: {
         setWeather(state, action) {
@@ -60,15 +61,18 @@ const weatherSlice = createSlice({
                 state.daily = daily
                 state.loading = false
             })
-            .addCase(refetchOneCall.rejected, (state, action) => {
-                if (action.payload) {
-                    // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-                    state.error = action.payload
-                } else {
-                    state.error = action.error
-                }
-                state.loading = false
-            })
+            .addCase(
+                refetchOneCall.rejected,
+                (state, action: { payload: any; error: any }) => {
+                    if (action.payload) {
+                        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
+                        state.error = action.payload
+                    } else {
+                        state.error = action.error
+                    }
+                    state.loading = false
+                },
+            )
     },
 })
 

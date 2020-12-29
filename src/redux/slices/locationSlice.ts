@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { geoAPI } from '../../apis'
+import { GeoPoint } from '../../apis/types'
 
 export const getAddress = createAsyncThunk(
     'geo/getAddress',
-    async (arg, thunkAPI) => {
+    async (arg: GeoPoint, thunkAPI) => {
         try {
             const addressData = await geoAPI.getAddress(arg)
             const { structure } = addressData.response.result[0]
@@ -19,6 +20,8 @@ const locationSlice = createSlice({
     initialState: {
         coords: null,
         address: null,
+        loading: false,
+        error: null,
     },
     reducers: {
         setLocation(state, action) {
@@ -38,15 +41,18 @@ const locationSlice = createSlice({
                 state.address = action.payload
                 state.loading = false
             })
-            .addCase(getAddress.rejected, (state, action) => {
-                if (action.payload) {
-                    // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
-                    state.error = action.payload
-                } else {
-                    state.error = action.error
-                }
-                state.loading = false
-            })
+            .addCase(
+                getAddress.rejected,
+                (state, action: { payload: any; error: any }) => {
+                    if (action.payload) {
+                        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
+                        state.error = action.payload
+                    } else {
+                        state.error = action.error
+                    }
+                    state.loading = false
+                },
+            )
     },
 })
 

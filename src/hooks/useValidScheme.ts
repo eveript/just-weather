@@ -1,7 +1,7 @@
 import { useAppState } from './useAppState'
 import { useEffect, useState } from 'react'
 
-export const useValidScheme = (colorScheme) => {
+export const useValidScheme = (colorScheme: string) => {
     const appState = useAppState()
     const [scheme, setScheme] = useState(colorScheme)
 

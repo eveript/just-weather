@@ -6,7 +6,7 @@ import errorReducer from './slices/errorSlice'
 // import monitorReducersEnhancer from './enhancers/monitorReducers'
 // import loggerMiddleware from './middleware/logger'
 
-export default function configureAppStore(preloadedState) {
+export default function configureAppStore(preloadedState: any) {
     return configureStore({
         preloadedState,
         reducer: {
