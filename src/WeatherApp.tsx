@@ -15,7 +15,7 @@ const StyledSafeAreaView = styled.SafeAreaView`
 `
 
 const WeatherApp = () => {
-    const colorScheme = useValidScheme(useColorScheme())
+    const colorScheme = useValidScheme(useColorScheme()) as 'dark' | 'light'
     return (
         <ApplicationProvider {...eva} theme={eva[colorScheme]}>
             <StyledSafeAreaView>

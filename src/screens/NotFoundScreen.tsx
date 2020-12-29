@@ -2,6 +2,8 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RootStackParamList } from '../navigation'
 
 const StyledWrapper = styled(Layout)`
     flex: 1;
@@ -20,7 +22,11 @@ const StyledLinkText = styled(Text)`
     color: #2e78b7;
 `
 
-const NotFoundScreen = ({ navigation }) => (
+const NotFoundScreen = ({
+    navigation,
+}: {
+    navigation: StackNavigationProp<RootStackParamList, 'NotFound'>
+}) => (
     <StyledWrapper>
         <StyledTitle>This screen doesn't exist.</StyledTitle>
         <TouchableOpacity onPress={() => navigation.replace('Root')}>
