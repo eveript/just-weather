@@ -7,15 +7,13 @@ import 'dayjs/locale/ko'
 
 import useCachedResources from './src/hooks/useCachedResources'
 import WeatherApp from './src/WeatherApp'
-import configureAppStore from './src/redux/store'
+import store from './src/redux/store'
 import { Provider } from 'react-redux'
 import { refetchOneCall } from './src/redux/slices/weatherSlice'
 
 enableScreens()
 
 dayjs.locale('ko')
-
-const store = configureAppStore()
 
 const App = () => {
     // 마운트시 불러올 리소스나 데이터는 여기에서

@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 import ForecastWeather from '../../components/weathers/organisms/ForecastWeather'
 import HashTags from '../../components/weathers/atoms/HashTags'
 import { Platform, ScrollView } from 'react-native'
+import { WeatherState } from '../../redux/slices/weatherSlice'
 
 const StyledWeatherOuterWrapper = styled(Layout)`
     flex: 1;
@@ -33,13 +34,13 @@ const StyledPredictWeatherBox = styled(Layout)`
     align-items: center;
 `
 
-const WeatherContents = (props) => (
+const WeatherContents = (props: WeatherState) => (
     <StyledWeatherInnerWrapper>
         <StyledCurrentWeatherBox>
             <CurrentWeather {...props} />
         </StyledCurrentWeatherBox>
         <StyledTagBox>
-            <HashTags {...props} />
+            <HashTags />
         </StyledTagBox>
         <StyledPredictWeatherBox>
             <ForecastWeather {...props} />
@@ -47,7 +48,7 @@ const WeatherContents = (props) => (
     </StyledWeatherInnerWrapper>
 )
 
-const MobileView = (props) => (
+const MobileView = (props: WeatherState) => (
     <ScrollView
         style={{ alignSelf: 'stretch' }}
         contentContainerStyle={{
@@ -60,13 +61,13 @@ const MobileView = (props) => (
     </ScrollView>
 )
 
-const WebView = (props) => (
+const WebView = (props: WeatherState) => (
     <StyledWeatherBox>
         <WeatherContents {...props} />
     </StyledWeatherBox>
 )
 
-export default (props) => {
+export default (props: WeatherState) => {
     return (
         <StyledWeatherOuterWrapper>
             {props.loading ? (

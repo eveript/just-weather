@@ -32,6 +32,14 @@ export const refetchOneCall = createAsyncThunk(
     },
 )
 
+export type WeatherState = {
+    current: any
+    hourly: any
+    daily: any
+    loading: boolean
+    error: any
+}
+
 const weatherSlice = createSlice({
     name: 'weather',
     initialState: {
@@ -40,7 +48,7 @@ const weatherSlice = createSlice({
         daily: null,
         loading: false,
         error: null,
-    },
+    } as WeatherState,
     reducers: {
         setWeather(state, action) {
             const { current, hourly, daily } = action.payload

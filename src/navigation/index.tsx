@@ -11,10 +11,15 @@ import { TopNavigation, useTheme } from '@ui-kitten/components'
 import WeatherContainer from '../screens/weathers'
 import styled from 'styled-components/native'
 
+export type RootStackParamList = {
+    Root: undefined
+    NotFound: undefined
+}
+
 const StyledTopNavigation = styled(TopNavigation)`
     width: 100%;
 `
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<RootStackParamList>()
 
 const Navigation = ({ colorScheme }: { colorScheme: string }) => {
     const theme = useTheme()
