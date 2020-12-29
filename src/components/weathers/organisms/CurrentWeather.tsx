@@ -33,7 +33,7 @@ const SubTempText = styled(Text)`
 `
 SubTempText.displayName = 'SubTempText'
 
-const CurrentWeather = ({ current, daily }) => {
+const CurrentWeather = ({ current, daily }: { current: any; daily: any }) => {
     return (
         current &&
         daily && (
@@ -53,10 +53,7 @@ const CurrentWeather = ({ current, daily }) => {
                             : ''}
                     </TempText>
                     <SubTempLayout>
-                        <SubTempText
-                            className="subTempText"
-                            category="s2"
-                        >{`최고:${parseInt(
+                        <SubTempText category="s2">{`최고:${parseInt(
                             daily[0].temp.max,
                             10,
                         )}°`}</SubTempText>

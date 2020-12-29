@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
 import RowLayout from '../../common/atoms/RowLayout'
+import { WeatherState } from '../../../redux/slices/weatherSlice'
 
 const DayItemWrapper = styled(Layout)`
     padding-left: 10px;
@@ -19,10 +20,10 @@ const MinMaxWrapper = styled(RowLayout)`
     width: 70px;
     justify-content: space-between;
 `
-const DailyForecast = ({ daily }) => {
+const DailyForecast = ({ daily }: { daily: any }) => {
     // dayjs.tz.setDefault(timezone)
 
-    const dateFormat = (date) => {
+    const dateFormat = (date: number) => {
         return dayjs(date).format('dddd')
     }
     const renderItem = ({
@@ -30,6 +31,8 @@ const DailyForecast = ({ daily }) => {
         item: {
             weather: [weather],
         },
+    }: {
+        item: any
     }) => (
         <DayItemWrapper>
             <DayItem>

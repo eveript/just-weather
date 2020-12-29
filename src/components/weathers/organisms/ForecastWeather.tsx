@@ -7,6 +7,7 @@ import RowLayout from '../../common/atoms/RowLayout'
 import dayjs from 'dayjs'
 import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
+import { WeatherState } from '../../../redux/slices/weatherSlice'
 
 const HourlyLabel = styled(Layout)`
     margin-top: 10px;
@@ -39,12 +40,12 @@ const MinMaxWrapper = styled(RowLayout)`
     justify-content: space-between;
 `
 
-const dateFormat = (date, index) =>
+const dateFormat = (date: number, index: number) =>
     index === 0 ? '지금' : `${dayjs(date).format('A h')}시`
 
-const stepBy3Filter = (ts) => dayjs(ts).hour() % 3 === 0
+const stepBy3Filter = (ts: number) => dayjs(ts).hour() % 3 === 0
 
-export default ({ current, hourly, daily, ...rest }) => {
+export default ({ current, hourly, daily, ...rest }: WeatherState) => {
     return (
         current &&
         hourly &&
@@ -84,9 +85,10 @@ export default ({ current, hourly, daily, ...rest }) => {
                     <HourlyForecast
                         hourly={hourly
                             .filter(
-                                (h, i) => i < 24 && stepBy3Filter(h.dt * 1000),
+                                (h: { dt: number }, i: number) =>
+                                    i < 24 && stepBy3Filter(h.dt * 1000),
                             )
-                            .map((h, i) => ({
+                            .map((h: { dt: number }, i: number) => ({
                                 ...h,
                                 displayDate: dateFormat(h.dt * 1000, i),
                             }))}
