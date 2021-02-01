@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import WeatherPresenter from './WeatherPresenter'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAppState } from '../../hooks/useAppState'
-import { refetchOneCall } from '../../redux/slices/weatherSlice'
+import { refetchOneCall } from './weatherSlice'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../../navigation'
 import { RouteProp } from '@react-navigation/native'
-import { RootState } from '../../redux/store'
+import { RootState } from '../../app/store'
 
 const WeatherContainer = ({
     navigation,

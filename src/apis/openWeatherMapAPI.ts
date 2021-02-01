@@ -1,4 +1,4 @@
-import { WEATHER_IMAGE_URL, WEATHER_URL } from '../constants/Weathers'
+import { WEATHER_IMAGE_URL, WEATHER_URL } from './constants/Weathers'
 import { getWeather } from './apiUtils'
 import { GeoPoint } from './types'
 

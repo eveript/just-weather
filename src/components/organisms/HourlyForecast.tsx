@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, ScrollView } from 'react-native'
 import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
+import { getOpenWeatherIcon } from '../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
 
 const UnGrowScrollView = styled(ScrollView)`

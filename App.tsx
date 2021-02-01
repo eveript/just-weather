@@ -6,10 +6,10 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 
 import useCachedResources from './src/hooks/useCachedResources'
-import WeatherApp from './src/WeatherApp'
-import store from './src/redux/store'
+import WeatherApp from './src/app/WeatherApp'
+import store from './src/app/store'
 import { Provider } from 'react-redux'
-import { refetchOneCall } from './src/redux/slices/weatherSlice'
+import { refetchOneCall } from './src/screens/weathers/weatherSlice'
 
 enableScreens()
 

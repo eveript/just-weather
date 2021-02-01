@@ -1,6 +1,6 @@
 import axios from 'axios'
-import * as Weathers from '../constants/Weathers'
-import * as Geo from '../constants/Geo'
+import * as Weathers from './constants/Weathers'
+import * as Geo from './constants/Geo'
 import { GeoParams, WeatherParams } from './types'
 
 const makeWeatherRequest = (path: string, params: WeatherParams) => {

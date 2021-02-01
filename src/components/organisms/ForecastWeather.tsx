@@ -3,11 +3,11 @@ import { Layout, Text } from '@ui-kitten/components'
 import styled from 'styled-components/native'
 import HourlyForecast from './HourlyForecast'
 import DailyForecast from './DailyForecast'
-import RowLayout from '../../common/atoms/RowLayout'
+import RowLayout from '../atoms/RowLayout'
 import dayjs from 'dayjs'
-import { getOpenWeatherIcon } from '../../../apis/openWeatherMapAPI'
+import { getOpenWeatherIcon } from '../../apis/openWeatherMapAPI'
 import WeatherAvatar from '../atoms/WeatherAvatar'
-import { WeatherState } from '../../../redux/slices/weatherSlice'
+import { WeatherState } from '../../screens/weathers/weatherSlice'
 
 const HourlyLabel = styled(Layout)`
     margin-top: 10px;

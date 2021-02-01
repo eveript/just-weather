@@ -1,11 +1,11 @@
 import React from 'react'
-import CurrentWeather from '../../components/weathers/organisms/CurrentWeather'
+import CurrentWeather from '../../components/organisms/CurrentWeather'
 import { Layout, Spinner } from '@ui-kitten/components'
 import styled from 'styled-components/native'
-import ForecastWeather from '../../components/weathers/organisms/ForecastWeather'
-import HashTags from '../../components/weathers/atoms/HashTags'
+import ForecastWeather from '../../components/organisms/ForecastWeather'
+import HashTags from '../../components/atoms/HashTags'
 import { Platform, ScrollView } from 'react-native'
-import { WeatherState } from '../../redux/slices/weatherSlice'
+import { WeatherState } from './weatherSlice'
 
 const StyledWeatherOuterWrapper = styled(Layout)`
     flex: 1;

@@ -7,8 +7,8 @@ import styled from 'styled-components/native'
 
 import 'dayjs/locale/ko'
 
-import Navigation from './navigation'
-import { useValidScheme } from './hooks/useValidScheme'
+import Navigation from '../navigation'
+import { useValidScheme } from '../hooks/useValidScheme'
 // import { EvaIconsPack } from '@ui-kitten/eva-icons'
 const StyledSafeAreaView = styled.SafeAreaView`
     flex: 1;
