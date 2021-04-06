@@ -12,7 +12,7 @@ export default function useMountedState() {
         return () => {
             mountedRef.current = false
         }
-    })
+    }, [])
 
     return get
 }
